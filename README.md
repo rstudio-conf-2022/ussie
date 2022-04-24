@@ -4,6 +4,8 @@
 # ussie
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/ijlyttle/ussie/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/ussie/actions)
 <!-- badges: end -->
 
 The goal of ussie is to make a first attempt at a demo package for folks
