@@ -8,14 +8,6 @@ get_soccer_data <- function(country) {
   e[[name]]
 }
 
-uss_get_games <- function(country = uss_countries()) {
-  country <- rlang::arg_match(country)
-
-  data <- get_soccer_data(country)
-
-  uss_make_games(data, country)
-}
-
 uss_make_games <- function(data_engsoc, country) {
 
   # validate
@@ -41,4 +33,12 @@ uss_make_games <- function(data_engsoc, country) {
     )
 
   result
+}
+
+uss_get_games <- function(country = uss_countries()) {
+  country <- rlang::arg_match(country)
+
+  data <- get_soccer_data(country)
+
+  uss_make_games(data, country)
 }
