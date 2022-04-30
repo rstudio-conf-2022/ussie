@@ -18,7 +18,8 @@ Imports:
     memoise,
     rlang (>= 0.4.11),
     tibble,
-    utils
+    utils,
+    withr
 Suggests: 
     roxygen2,
     testthat (>= 3.0.0)
