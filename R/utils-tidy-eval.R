@@ -1,6 +1,10 @@
+# Created using `usethis::use_tidy_eval()`
+# - https://usethis.r-lib.org/reference/tidyverse.html
+
 #' Tidy eval helpers
 #'
 #' @description
+#'
 #' This page lists the tidy eval tools reexported in this package from
 #' rlang. To learn about using tidy eval in scripts and packages at a
 #' high level, see the [dplyr programming
