@@ -13,5 +13,5 @@
   #  - caches the result
   #  - returns the cached result whenever we call using the same input args
 
-  uss_get_games <<- memoise::memoise(uss_get_games)
+  uss_make_games <<- memoise::memoise(uss_make_games)
 }
