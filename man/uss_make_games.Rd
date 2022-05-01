@@ -2,23 +2,54 @@
 % Please edit documentation in R/games.R
 \name{uss_make_games}
 \alias{uss_make_games}
+\alias{uss_make_games_mem}
 \title{Make a standard league-play tibble}
 \usage{
 uss_make_games(data_engsoc, country)
+
+uss_make_games_mem(data_engsoc, country)
 }
 \arguments{
 \item{data_engsoc}{\code{data.frame} obtained from {engsoccerdata}.}
 
-\item{country}{\code{character} scalar, used to populate \code{country} column}
+\item{country}{\code{character} scalar, specifies the league.
+\code{uss_countries()} returns choices available from {engsoccerdata}}
 }
 \value{
 \code{tbl_df} with columns \code{country}, \code{date}, \code{season}, \code{tier},
 \code{home}, \code{visitor}, \code{goals_home}, \code{goals_visitor}.
 }
 \description{
-Make a standard league-play tibble
+Given a league-play data frame from {engsoccer}, returns a tibble with
+standardised colomn-names and types, e.g. \code{date} is a \code{Date}.
+
+There are two versions of this function:
+
+\describe{
+\item{\code{uss_make_games()}}{working version}
+\item{\code{uss_make_games_mem()}}{memoised (caching) version}
+}
+
+\code{uss_make_games_mem()} calls \code{uss_make_games()}; they will resturn identical
+results.
+}
+\details{
+A memoised version of this function is provided because it takes a little
+time to parse the dates for nearly 200,000 league-play games for England.
+
+When the package is loaded, the wrapper function, \code{uss_make_games_mem()},
+is "replaced" by the memoised version: see \code{zzz.R}.
+
+A wrapper function is used for a couple reasons:
+\itemize{
+\item to maintain access to the un-memoised function
+\item so that R CMD CHECK can see that the {tibble} package is actually used;
+it throws a note if the original function, \code{uss_make_games_mem()},
+is overwritten
+}
 }
 \examples{
 uss_make_games(engsoccerdata::italy, "Italy")
+uss_make_games_mem(engsoccerdata::italy, "Italy")
 }
 \keyword{internal}

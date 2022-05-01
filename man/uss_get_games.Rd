@@ -4,17 +4,39 @@
 \alias{uss_get_games}
 \title{Get a league-play tibble}
 \usage{
-uss_get_games(country = uss_countries())
+uss_get_games(country = uss_countries(), ...)
 }
 \arguments{
-\item{country}{\code{character} scalar, used to populate \code{country} column}
+\item{country}{\code{character} scalar, specifies the league.
+\code{uss_countries()} returns choices available from {engsoccerdata}}
+
+\item{...}{
+  Arguments passed on to \code{\link[dplyr:filter]{dplyr::filter}}
+  \describe{
+    \item{\code{.data}}{A data frame, data frame extension (e.g. a tibble), or a
+lazy data frame (e.g. from dbplyr or dtplyr). See \emph{Methods}, below, for
+more details.}
+    \item{\code{.preserve}}{Relevant when the \code{.data} input is grouped.
+If \code{.preserve = FALSE} (the default), the grouping structure
+is recalculated based on the resulting data, otherwise the grouping is kept as is.}
+  }}
 }
 \value{
 \code{tbl_df} with columns \code{country}, \code{date}, \code{season}, \code{tier},
 \code{home}, \code{visitor}, \code{goals_home}, \code{goals_visitor}.
 }
 \description{
-Get a league-play tibble
+Gets league-play data for each game, from {engsoccerdata}, returning
+a tibble in a standardised format. You can pass in filtering expressions
+via the dots (\code{...}), these are evaluated using \code{\link[dplyr:filter]{dplyr::filter()}}.
+}
+\details{
+\code{uss_countries()} returns the available choices; \code{"england"} is
+the default.
+
+This function relies on an internal function, \code{uss_make_games()}, to parse
+the source data; to speed up the performance, a memoised (caching) version
+of this function is used, \code{uss_make_games_mem()}.
 }
 \examples{
 uss_get_games("england")
