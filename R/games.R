@@ -110,10 +110,7 @@ uss_make_games <- function(data_engsoc, country) {
 
   # validate
   validate_data_frame(data_engsoc)
-  validate_cols(
-    data_engsoc,
-    c("Date", "Season", "home", "visitor", "hgoal", "vgoal", "tier")
-  )
+  validate_cols(data_engsoc, cols_engsoc())
 
   # The idea here would be to establish this function without using the
   # `.data` pronoun, see that it works but does not pass R CMD CHECK cleanly 🙀
@@ -185,6 +182,7 @@ uss_get_games <- function(country = uss_countries(), ...) {
   # 3. @inheritDotParams dplyr::filter
   # 4. a few words in the description
 
+  # tidyverse variant of match.arg
   country <- rlang::arg_match(country)
 
   data <- get_soccer_data(country)
