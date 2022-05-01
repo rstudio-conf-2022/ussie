@@ -60,7 +60,7 @@ Development:
 -   `usethis::use_package()`
 -   `usethis::use_test()`
 -   `usethis::use_github_action_check_release()` minimal check
-    -   `usethis::use_github_action_check__standard()` if thinking of
+    -   `usethis::use_github_action_check_standard()` if thinking of
         CRAN
 -   `usethis::use_tidy_eval()`
 -   `usethis::use_package_doc()`, then `usethis::use_tibble()` - so this
