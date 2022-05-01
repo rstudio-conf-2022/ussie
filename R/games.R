@@ -19,6 +19,17 @@ get_soccer_data <- function(country) {
   e[[name]]
 }
 
+# trick to let R CMD CHECK know that we are using
+# engsoccerdata
+best_wins_leeds <- function(n = 10, type = NULL) {
+  engsoccerdata::bestwins(
+    engsoccerdata::england,
+    teamname = "Leeds United",
+    type = type,
+    N = n
+  )
+}
+
 #' Make a standard league-play tibble
 #'
 #' @param data_engsoc `data.frame` obtained from {engsoccerdata}.
@@ -59,6 +70,11 @@ uss_make_games <- function(data_engsoc, country) {
   result
 }
 
+# internal function, placeholder for memoise
+uss_make_games_mem <- function(data_engsoc, country) {
+  uss_make_games(data_engsoc, country)
+}
+
 #' Get a league-play tibble
 #'
 #' @inherit uss_make_games params return
@@ -76,5 +92,5 @@ uss_get_games <- function(country = uss_countries()) {
   # capitalize
   substr(country, 1, 1) <- toupper(substr(country, 1, 1))
 
-  uss_make_games(data, country)
+  uss_make_games_mem(data, country)
 }
