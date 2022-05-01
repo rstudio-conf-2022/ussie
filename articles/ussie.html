@@ -73,9 +73,11 @@
 
     
     
+<p>The <strong>ussie</strong> pckage is designed as a teaching example for a course, Building Tidy Tools. In this course, a student will build this package. For each file, they will start with templated functions; they will edit the file themselves, according to the particular exercise.</p>
+<p>When a student has a function working the way they want it to work, they will add an exampe in this vignette. What follows is Ian’s attempt to go through the exercise.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ijlyttle/ussie" class="external-link">ussie</a></span><span class="op">)</span></code></pre></div>
-<p>You can use the <strong>ussie</strong> package to work with data for league-play games for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
+<p>You can use the ussie package to work with data for league-play games for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
 <p>To find out which leagues are available, use <code><a href="../reference/uss_countries.html">uss_countries()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/uss_countries.html">uss_countries</a></span><span class="op">(</span><span class="op">)</span>
@@ -97,7 +99,7 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>888 1889-04-20 Accrington … Stoke …          2             0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>888 1888-11-24 Accrington … West B…          2             1</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 191,994 more rows</span></span></code></pre></div>
-<p><code><a href="../reference/uss_get_games.html">uss_get_games()</a></code> also accepts a <code>...</code> argument; these are passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>:</p>
+<p><code><a href="../reference/uss_get_games.html">uss_get_games()</a></code> also accepts <code>...</code> arguments; these are passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_games.html">uss_get_games</a></span><span class="op">(</span>
   <span class="st">"england"</span>, 
