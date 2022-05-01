@@ -14,11 +14,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+The **ussie** pckage is designed as a teaching example for a course, Building Tidy Tools.
+In this course, a student will build this package.
+For each file, they will start with templated functions; they will edit the file themselves, according to the particular exercise. 
+
+When a student has a function working the way they want it to work, they will add an exampe in this vignette. What follows is Ian's attempt to go through the exercise.
+
 ```{r setup}
 library(ussie)
 ```
 
-You can use the **ussie** package to work with data for league-play games for European Football Leagues.
+You can use the ussie package to work with data for league-play games for European Football Leagues.
 The data is provided by James Curley's [**engsoccerdata**](https://CRAN.R-project.org/package=engsoccerdata) package: the CRAN version has results through summer 2016; the [GitHub version](https://github.com/jalapic/engsoccerdata) has more-recent results. 
 
 To find out which leagues are available, use `uss_countries()`:
@@ -33,7 +39,7 @@ To get the data for a given league, use `uss_get_games()` with the `country`:
 uss_get_games("england")
 ```
 
-`uss_get_games()` also accepts a `...` argument; these are passed to `dplyr::filter()`:
+`uss_get_games()` also accepts `...` arguments; these are passed to `dplyr::filter()`:
 
 ```{r uss_get_games_filter}
 uss_get_games(
