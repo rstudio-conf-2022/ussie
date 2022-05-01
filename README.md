@@ -66,3 +66,5 @@ Development:
 -   `usethis::use_package_doc()`, then `usethis::use_tibble()` - so this
     may have to be earlier in the process.
 -   `usethis::use_pkgdown()`, `usethis::use_github_action("pkgdown")`
+-   `usethis::use_github_pages()`: configure GH pages once the pkg
+    action succeds, wait a minute et voilà!
