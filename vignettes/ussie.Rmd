@@ -1,0 +1,45 @@
+---
+title: "ussie"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ussie}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ussie)
+```
+
+You can use the **ussie** package to work with data for league-play games for European Football Leagues.
+The data is provided by James Curley's [**engsoccerdata**](https://CRAN.R-project.org/package=engsoccerdata) package: the CRAN version has results through summer 2016; the [GitHub version](https://github.com/jalapic/engsoccerdata) has more-recent results. 
+
+To find out which leagues are available, use `uss_countries()`:
+
+```{r uss_countries}
+uss_countries()
+```
+
+To get the data for a given league, use `uss_get_games()` with the `country`:
+
+```{r uss_get_games}
+uss_get_games("england")
+```
+
+`uss_get_games()` also accepts a `...` argument; these are passed to `dplyr::filter()`:
+
+```{r uss_get_games_filter}
+uss_get_games(
+  "england", 
+  season == 1990, 
+  home == "Leeds United" | visitor == "Leeds United"
+)
+```
+
