@@ -22,8 +22,7 @@ is recalculated based on the resulting data, otherwise the grouping is kept as i
   }}
 }
 \value{
-\code{tbl_df} with columns \code{country}, \code{date}, \code{season}, \code{tier},
-\code{home}, \code{visitor}, \code{goals_home}, \code{goals_visitor}.
+\link[tibble:tibble-package]{tibble} with columns \code{country}, \code{date},
 }
 \description{
 Gets league-play data for each game, from {engsoccerdata}, returning

@@ -16,8 +16,7 @@ uss_make_games_mem(data_engsoc, country)
 \code{uss_countries()} returns choices available from {engsoccerdata}}
 }
 \value{
-\code{tbl_df} with columns \code{country}, \code{date}, \code{season}, \code{tier},
-\code{home}, \code{visitor}, \code{goals_home}, \code{goals_visitor}.
+\link[tibble:tibble-package]{tibble} with columns \code{country}, \code{date},
 }
 \description{
 Given a league-play data frame from {engsoccer}, returns a tibble with

@@ -97,8 +97,8 @@ best_wins_leeds <- function(n = 10) {
 #' @param country `character` scalar, specifies the league.
 #'   `uss_countries()` returns choices available from {engsoccerdata}
 #'
-#' @return `tbl_df` with columns `country`, `date`, `season`, `tier`,
-#'   `home`, `visitor`, `goals_home`, `goals_visitor`.
+#' @return [tibble][tibble::tibble-package] with columns `country`, `date`,
+#   `season`, `tier`, `home`, `visitor`, `goals_home`, `goals_visitor`.
 #'
 #' @examples
 #' uss_make_games(engsoccerdata::italy, "Italy")
