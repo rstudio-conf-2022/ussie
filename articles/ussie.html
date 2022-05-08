@@ -41,6 +41,9 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -77,14 +80,14 @@
 <p>When a student has a function working the way they want it to work, they will add an exampe in this vignette. What follows is Ian’s attempt to go through the exercise.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ijlyttle/ussie" class="external-link">ussie</a></span><span class="op">)</span></code></pre></div>
-<p>You can use the ussie package to work with data for league-play games for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
+<p>You can use the ussie package to work with data for league-play matches for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
 <p>To find out which leagues are available, use <code><a href="../reference/uss_countries.html">uss_countries()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/uss_countries.html">uss_countries</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "england" "germany" "holland" "italy"   "spain"</span></code></pre></div>
-<p>To get the data for a given league, use <code><a href="../reference/uss_get_games.html">uss_get_games()</a></code> with the <code>country</code>:</p>
+<p>To get the data for a given league, use <code><a href="../reference/uss_get_matches.html">uss_get_matches()</a></code> with the <code>country</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_games.html">uss_get_games</a></span><span class="op">(</span><span class="st">"england"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_matches.html">uss_get_matches</a></span><span class="op">(</span><span class="st">"england"</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 192,004 × 8</span></span>
 <span class="co">#&gt;    country  tier season date       home         visitor goals_home goals_visitor</span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -99,9 +102,9 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>888 1889-04-20 Accrington … Stoke …          2             0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>888 1888-11-24 Accrington … West B…          2             1</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 191,994 more rows</span></span></code></pre></div>
-<p><code><a href="../reference/uss_get_games.html">uss_get_games()</a></code> also accepts <code>...</code> arguments; these are passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>:</p>
+<p><code><a href="../reference/uss_get_matches.html">uss_get_matches()</a></code> also accepts <code>...</code> arguments; these are passed to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_games.html">uss_get_games</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_matches.html">uss_get_matches</a></span><span class="op">(</span>
   <span class="st">"england"</span>, 
   <span class="va">season</span> <span class="op">==</span> <span class="fl">1990</span>, 
   <span class="va">home</span> <span class="op">==</span> <span class="st">"Leeds United"</span> <span class="op">|</span> <span class="va">visitor</span> <span class="op">==</span> <span class="st">"Leeds United"</span>

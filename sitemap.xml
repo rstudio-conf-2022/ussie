@@ -22,6 +22,9 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -31,10 +34,10 @@
     <loc>/reference/uss_countries.html</loc>
   </url>
   <url>
-    <loc>/reference/uss_get_games.html</loc>
+    <loc>/reference/uss_get_matches.html</loc>
   </url>
   <url>
-    <loc>/reference/uss_make_games.html</loc>
+    <loc>/reference/uss_make_matches.html</loc>
   </url>
   <url>
     <loc>/reference/ussie-package.html</loc>
