@@ -73,24 +73,24 @@ best_wins_leeds <- function(n = 10) {
 #' There are two versions of this function:
 #'
 #' \describe{
-#'   \item{`uss_make_games()`}{working version}
-#'   \item{`uss_make_games_mem()`}{memoised (caching) version}
+#'   \item{`uss_make_matches()`}{working version}
+#'   \item{`uss_make_matches_mem()`}{memoised (caching) version}
 #' }
 #'
-#' `uss_make_games_mem()` calls `uss_make_games()`; they will resturn identical
+#' `uss_make_matches_mem()` calls `uss_make_matches()`; they will resturn identical
 #' results.
 #'
 #' @details
 #' A memoised version of this function is provided because it takes a little
-#' time to parse the dates for nearly 200,000 league-play games for England.
+#' time to parse the dates for nearly 200,000 league-play matches for England.
 #'
-#' When the package is loaded, the wrapper function, `uss_make_games_mem()`,
+#' When the package is loaded, the wrapper function, `uss_make_matches_mem()`,
 #' is "replaced" by the memoised version: see `zzz.R`.
 #'
 #' A wrapper function is used for a couple reasons:
 #'  - to maintain access to the un-memoised function
 #'  - so that R CMD CHECK can see that the {tibble} package is actually used;
-#'    it throws a note if the original function, `uss_make_games_mem()`,
+#'    it throws a note if the original function, `uss_make_matches_mem()`,
 #'    is overwritten
 #'
 #' @param data_engsoc `data.frame` obtained from {engsoccerdata}.
@@ -101,12 +101,12 @@ best_wins_leeds <- function(n = 10) {
 #   `season`, `tier`, `home`, `visitor`, `goals_home`, `goals_visitor`.
 #'
 #' @examples
-#' uss_make_games(engsoccerdata::italy, "Italy")
-#' uss_make_games_mem(engsoccerdata::italy, "Italy")
+#' uss_make_matches(engsoccerdata::italy, "Italy")
+#' uss_make_matches_mem(engsoccerdata::italy, "Italy")
 #' @keywords internal
 #' @export
 #'
-uss_make_games <- function(data_engsoc, country) {
+uss_make_matches <- function(data_engsoc, country) {
 
   # validate
   validate_data_frame(data_engsoc)
@@ -144,11 +144,11 @@ uss_make_games <- function(data_engsoc, country) {
   result
 }
 
-#' @rdname uss_make_games
+#' @rdname uss_make_matches
 #' @export
 #'
-uss_make_games_mem <- function(data_engsoc, country) {
-  uss_make_games(data_engsoc, country)
+uss_make_matches_mem <- function(data_engsoc, country) {
+  uss_make_matches(data_engsoc, country)
 }
 
 #' Get a league-play tibble
@@ -160,18 +160,18 @@ uss_make_games_mem <- function(data_engsoc, country) {
 #' `uss_countries()` returns the available choices; `"england"` is
 #' the default.
 #'
-#' This function relies on an internal function, `uss_make_games()`, to parse
+#' This function relies on an internal function, `uss_make_matches()`, to parse
 #' the source data; to speed up the performance, a memoised (caching) version
-#' of this function is used, `uss_make_games_mem()`.
+#' of this function is used, `uss_make_matches_mem()`.
 #'
-#' @inherit uss_make_games params return
+#' @inherit uss_make_matches params return
 #' @inheritDotParams dplyr::filter
 #'
 #' @examples
-#' uss_get_games("england")
+#' uss_get_matches("england")
 #' @export
 #'
-uss_get_games <- function(country = uss_countries(), ...) {
+uss_get_matches <- function(country = uss_countries(), ...) {
 
   # The idea here would be to establish the function using only the
   # `country` parameter, then to introduce the "pass-the-dots" concept
@@ -191,6 +191,6 @@ uss_get_games <- function(country = uss_countries(), ...) {
   substr(country, 1, 1) <- toupper(substr(country, 1, 1))
 
   # build standardised tibble, caching results
-  uss_make_games_mem(data, country) |>
+  uss_make_matches_mem(data, country) |>
     dplyr::filter(...)
 }

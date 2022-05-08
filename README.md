@@ -68,3 +68,5 @@ Development:
 -   `usethis::use_pkgdown()`, `usethis::use_github_action("pkgdown")`
 -   `usethis::use_github_pages()`: configure GH pages once the pkg
     action succeds, wait a minute et voilà!
+-   `usethis::pr_init()`, `usethis::pr_push()`, `usethis::pr_finish()`
+-   `usethis::use_news_md()`
