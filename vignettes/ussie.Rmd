@@ -24,7 +24,7 @@ When a student has a function working the way they want it to work, they will ad
 library(ussie)
 ```
 
-You can use the ussie package to work with data for league-play games for European Football Leagues.
+You can use the ussie package to work with data for league-play matches for European Football Leagues.
 The data is provided by James Curley's [**engsoccerdata**](https://CRAN.R-project.org/package=engsoccerdata) package: the CRAN version has results through summer 2016; the [GitHub version](https://github.com/jalapic/engsoccerdata) has more-recent results. 
 
 To find out which leagues are available, use `uss_countries()`:
@@ -33,16 +33,16 @@ To find out which leagues are available, use `uss_countries()`:
 uss_countries()
 ```
 
-To get the data for a given league, use `uss_get_games()` with the `country`:
+To get the data for a given league, use `uss_get_matches()` with the `country`:
 
-```{r uss_get_games}
-uss_get_games("england")
+```{r uss_get_matches}
+uss_get_matches("england")
 ```
 
-`uss_get_games()` also accepts `...` arguments; these are passed to `dplyr::filter()`:
+`uss_get_matches()` also accepts `...` arguments; these are passed to `dplyr::filter()`:
 
-```{r uss_get_games_filter}
-uss_get_games(
+```{r uss_get_matches_filter}
+uss_get_matches(
   "england", 
   season == 1990, 
   home == "Leeds United" | visitor == "Leeds United"
