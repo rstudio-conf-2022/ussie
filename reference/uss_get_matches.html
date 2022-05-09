@@ -69,22 +69,15 @@ via the dots (<code>...</code>), these are evaluated using <code><a href="https:
 <dd><p><code>character</code> scalar, specifies the league.
 <code><a href="uss_countries.html">uss_countries()</a></code> returns choices available from engsoccerdata</p></dd>
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter</a></code></p><dl><dt><code>.data</code></dt>
-<dd><p>A data frame, data frame extension (e.g. a tibble), or a
-lazy data frame (e.g. from dbplyr or dtplyr). See <em>Methods</em>, below, for
-more details.</p></dd>
-
-    <dt><code>.preserve</code></dt>
-<dd><p>Relevant when the <code>.data</code> input is grouped.
-If <code>.preserve = FALSE</code> (the default), the grouping structure
-is recalculated based on the resulting data, otherwise the grouping is kept as is.</p></dd>
-
-  
-</dl></dd>
+<dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_data_masking.html" class="external-link">data-masking</a></code>&gt; Expressions that return a
+logical value, and are defined in terms of the variables in <code>.data</code>.
+If multiple expressions are included, they are combined with the <code>&amp;</code> operator.
+Only rows for which all conditions evaluate to <code>TRUE</code> are kept.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> with columns <code>country</code>, <code>date</code>,</p>
+    <p><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> with columns <code>country</code>, <code>date</code>,
+<code>season</code>, <code>tier</code>, <code>home</code>, <code>visitor</code>, <code>goals_home</code>, <code>goals_visitor</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

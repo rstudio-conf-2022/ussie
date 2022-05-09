@@ -79,7 +79,19 @@
 <p>The <strong>ussie</strong> pckage is designed as a teaching example for a course, Building Tidy Tools. In this course, a student will build this package. For each file, they will start with templated functions; they will edit the file themselves, according to the particular exercise.</p>
 <p>When a student has a function working the way they want it to work, they will add an exampe in this vignette. What follows is Ian’s attempt to go through the exercise.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ijlyttle/ussie" class="external-link">ussie</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ijlyttle/ussie" class="external-link">ussie</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+
+<span class="fu">conflicted</span><span class="fu">::</span><span class="fu"><a href="https://conflicted.r-lib.org/reference/conflict_prefer.html" class="external-link">conflict_prefer</a></span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span>
+<span class="co">#&gt; [conflicted] Will prefer <span style="color: #0000BB;">dplyr::filter</span> over any other package</span></code></pre></div>
 <p>You can use the ussie package to work with data for league-play matches for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
 <p>To find out which leagues are available, use <code><a href="../reference/uss_countries.html">uss_countries()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -123,6 +135,57 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 1991-05-04 Leeds United Aston …          5             2</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 1990-12-26 Leeds United Chelsea          4             1</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 28 more rows</span></span></code></pre></div>
+<p>In a <code>matches</code> tibble, each row is a unique football match. To make calculations over the course of a team’s season, it may be useful to provide an additional form: a <code>teams_matches</code> tibble. In this form, each row is a match from the perpsective of one of its teams. Thus, each match can be represented by two rows, one for each team.</p>
+<p>We can get <code>teams_matches</code> tibble using <code><a href="../reference/uss_make_teams_matches.html">uss_make_teams_matches()</a></code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">england_1_1990</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/uss_get_matches.html">uss_get_matches</a></span><span class="op">(</span><span class="st">"england"</span>, <span class="va">tier</span> <span class="op">==</span> <span class="fl">1</span>, <span class="va">season</span> <span class="op">==</span> <span class="fl">1990</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="../reference/uss_make_teams_matches.html">uss_make_teams_matches</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">england_1_1990</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 760 × 9</span></span>
+<span class="co">#&gt;    country  tier season team    date       at_home opponent          goals_for</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-08-25 FALSE   Wimbledon                 3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-08-29 TRUE    Luton Town                2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-01 TRUE    Tottenham Hotspur         0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-08 FALSE   Everton                   1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-15 TRUE    Chelsea                   4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-22 FALSE   Nottingham Forest         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-29 FALSE   Leeds United              2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-06 TRUE    Norwich City              2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-20 FALSE   Manchester United         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-27 TRUE    Sunderland                1</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 750 more rows, and 1 more variable: goals_against &lt;int&gt;</span></span></code></pre></div>
+<p>If we look at a specific date:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">england_1_1990</span> |&gt;
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"1990-09-29"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 9</span></span>
+<span class="co">#&gt;    country  tier season team               date       at_home opponent goals_for</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal            1990-09-29 FALSE   Leeds U…         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> England     1   <span style="text-decoration: underline;">1</span>990 Aston Villa        1990-09-29 FALSE   Tottenh…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> England     1   <span style="text-decoration: underline;">1</span>990 Chelsea            1990-09-29 TRUE    Sheffie…         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> England     1   <span style="text-decoration: underline;">1</span>990 Coventry City      1990-09-29 TRUE    Queens …         3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> England     1   <span style="text-decoration: underline;">1</span>990 Crystal Palace     1990-09-29 FALSE   Derby C…         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> England     1   <span style="text-decoration: underline;">1</span>990 Derby County       1990-09-29 TRUE    Crystal…         0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> England     1   <span style="text-decoration: underline;">1</span>990 Everton            1990-09-29 TRUE    Southam…         3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> England     1   <span style="text-decoration: underline;">1</span>990 Leeds United       1990-09-29 TRUE    Arsenal          2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 Liverpool          1990-09-29 FALSE   Sunderl…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 Luton Town         1990-09-29 FALSE   Norwich…         3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> England     1   <span style="text-decoration: underline;">1</span>990 Manchester City    1990-09-29 FALSE   Wimbled…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> England     1   <span style="text-decoration: underline;">1</span>990 Manchester United  1990-09-29 TRUE    Notting…         0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> England     1   <span style="text-decoration: underline;">1</span>990 Norwich City       1990-09-29 TRUE    Luton T…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> England     1   <span style="text-decoration: underline;">1</span>990 Nottingham Forest  1990-09-29 FALSE   Manches…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> England     1   <span style="text-decoration: underline;">1</span>990 Queens Park Range… 1990-09-29 FALSE   Coventr…         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> England     1   <span style="text-decoration: underline;">1</span>990 Sheffield United   1990-09-29 FALSE   Chelsea          2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> England     1   <span style="text-decoration: underline;">1</span>990 Southampton        1990-09-29 FALSE   Everton          0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> England     1   <span style="text-decoration: underline;">1</span>990 Sunderland         1990-09-29 TRUE    Liverpo…         0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">19</span> England     1   <span style="text-decoration: underline;">1</span>990 Tottenham Hotspur  1990-09-29 TRUE    Aston V…         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">20</span> England     1   <span style="text-decoration: underline;">1</span>990 Wimbledon          1990-09-29 TRUE    Manches…         1</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 1 more variable: goals_against &lt;int&gt;</span></span></code></pre></div>
+<p>You can see that each match is represented twice: once for the home team and once for the visiting team.</p>
   </main>
 </div>
 
