@@ -10,17 +10,17 @@ uss_points(wins, draws, country = NULL, season = NULL)
 uss_points_per_win(country, season)
 }
 \arguments{
-\item{wins}{\code{integer} number of wins}
+\item{wins}{\code{integer}-ish number of wins}
 
-\item{draws}{\code{integer} number of draws}
+\item{draws}{\code{integer}-ish number of draws}
 
 \item{country}{\code{character} scalar, specifies the league.
 \code{uss_countries()} returns choices available from {engsoccerdata}}
 
-\item{season}{\code{integer} year of the football season.}
+\item{season}{\code{integer}-ish year of the football season.}
 }
 \value{
-\code{integer}:
+\code{double}:
 \describe{
 \item{\code{uss_points()}}{number of points}
 \item{\code{uss_points_per_win()}}{number of points per win}
