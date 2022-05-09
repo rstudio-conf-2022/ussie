@@ -1,29 +1,13 @@
 #' Calculate points
 #'
-#' @param wins `integer`-ish number of wins
-#' @param draws `integer`-ish number of draws
 #' @inheritParams uss_make_matches
 #' @param season `integer`-ish year of the football season.
 #'
-#' @return `double`:
-#' \describe{
-#'   \item{`uss_points()`}{number of points}
-#'   \item{`uss_points_per_win()`}{number of points per win}
-#' }
+#' @return `integer` number of points per win
+#'
 #' @examples
 #' uss_points_per_win("england", 1980)
-#' uss_points(3, 1, country = "england", season = 1980)
-#' @export
-#'
-uss_points <- function(wins, draws, country = NULL, season = NULL) {
-
-  # note: need additional arg for points_per_win function
-  points <- uss_points_per_win(country, season) * wins + draws
-
-  points
-}
-
-#' @rdname uss_points
+#' uss_points_per_win(c("england", "england"), c(1980, 1981))
 #' @export
 #'
 uss_points_per_win <- function(country, season) {
