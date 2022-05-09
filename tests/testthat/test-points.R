@@ -20,5 +20,12 @@ test_that("uss_points_per_game() works", {
     uss_points_per_win(country = "england", season = 1981),
     3
   )
+
+  expect_warning(
+    tatooine <- uss_points_per_win("tatooine", season = 1977),
+    "country"
+  )
+
+  expect_identical(tatooine, 3)
 })
 
