@@ -22,6 +22,9 @@ When a student has a function working the way they want it to work, they will ad
 
 ```{r setup}
 library(ussie)
+library(dplyr)
+
+conflicted::conflict_prefer("filter", "dplyr")
 ```
 
 You can use the ussie package to work with data for league-play matches for European Football Leagues.
@@ -49,3 +52,25 @@ uss_get_matches(
 )
 ```
 
+In a `matches` tibble, each row is a unique football match. 
+To make calculations over the course of a team's season, it may be useful to provide an additional form: a `teams_matches` tibble. 
+In this form, each row is a match from the perpsective of one of its teams. 
+Thus, each match can be represented by two rows, one for each team.
+
+We can get `teams_matches` tibble using `uss_make_teams_matches()`:
+
+```{r uss_make_matches_teams}
+england_1_1990 <-
+  uss_get_matches("england", tier == 1, season == 1990) |>
+  uss_make_teams_matches()
+
+england_1_1990
+```
+
+If we look at a specific date:
+
+```{r england_1990_09_29}
+england_1_1990 |>
+  filter(date == as.Date("1990-09-29"))
+```
+You can see that each match is represented twice: once for the home team and once for the visiting team.

@@ -98,7 +98,7 @@ best_wins_leeds <- function(n = 10) {
 #'   `uss_countries()` returns choices available from {engsoccerdata}
 #'
 #' @return [tibble][tibble::tibble-package] with columns `country`, `date`,
-#   `season`, `tier`, `home`, `visitor`, `goals_home`, `goals_visitor`.
+#'  `season`, `tier`, `home`, `visitor`, `goals_home`, `goals_visitor`.
 #'
 #' @examples
 #' uss_make_matches(engsoccerdata::italy, "Italy")
@@ -165,7 +165,7 @@ uss_make_matches_mem <- function(data_engsoc, country) {
 #' of this function is used, `uss_make_matches_mem()`.
 #'
 #' @inherit uss_make_matches params return
-#' @inheritDotParams dplyr::filter
+#' @inheritParams dplyr::filter
 #'
 #' @examples
 #' uss_get_matches("england")

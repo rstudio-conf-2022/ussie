@@ -17,6 +17,7 @@ uss_make_matches_mem(data_engsoc, country)
 }
 \value{
 \link[tibble:tibble-package]{tibble} with columns \code{country}, \code{date},
+\code{season}, \code{tier}, \code{home}, \code{visitor}, \code{goals_home}, \code{goals_visitor}.
 }
 \description{
 Given a league-play data frame from {engsoccer}, returns a tibble with
