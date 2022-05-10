@@ -1,4 +1,4 @@
-# season_intermediate() works
+# seasons_intermediate() works
 
     Code
       dplyr::glimpse(italy)
@@ -19,7 +19,7 @@
       $ goals_for     <int> 4, 1, 1, 3, 1, 1, 1, 2, 1, 5, 0, 1, 3, 1, 2, 1, 2, 1, 1,~
       $ goals_against <int> 1, 0, 2, 1, 1, 2, 4, 1, 3, 2, 1, 1, 2, 0, 1, 2, 2, 4, 1,~
 
-# uss_make_season_cumulative() works
+# uss_make_seasons_cumulative() works
 
     Code
       dplyr::glimpse(italy)
@@ -40,7 +40,7 @@
       $ goals_for     <int> 4, 5, 6, 9, 10, 11, 12, 14, 15, 20, 20, 21, 24, 25, 27, ~
       $ goals_against <int> 1, 1, 3, 4, 5, 7, 11, 12, 15, 17, 18, 19, 21, 21, 22, 24~
 
-# uss_make_season_final() works
+# uss_make_seasons_final() works
 
     Code
       dplyr::glimpse(italy)

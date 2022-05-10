@@ -30,6 +30,8 @@ conflicted::conflict_prefer("filter", "dplyr")
 You can use the ussie package to work with data for league-play matches for European Football Leagues.
 The data is provided by James Curley's [**engsoccerdata**](https://CRAN.R-project.org/package=engsoccerdata) package: the CRAN version has results through summer 2016; the [GitHub version](https://github.com/jalapic/engsoccerdata) has more-recent results. 
 
+## Get match results
+
 To find out which leagues are available, use `uss_countries()`:
 
 ```{r uss_countries}
@@ -51,6 +53,8 @@ uss_get_matches(
   home == "Leeds United" | visitor == "Leeds United"
 )
 ```
+
+## Get match results for teams
 
 In a `matches` tibble, each row is a unique football match. 
 To make calculations over the course of a team's season, it may be useful to provide an additional form: a `teams_matches` tibble. 
@@ -74,3 +78,13 @@ england_1_1990 |>
   filter(date == as.Date("1990-09-29"))
 ```
 You can see that each match is represented twice: once for the home team and once for the visiting team.
+
+## Get season results
+
+We have another form: a `seasons` tibble.
+These contain results accumulated over seasons.
+We have a couple of functions:
+
+  - `uss_
+if you want cumulative (in-season) results,
+
