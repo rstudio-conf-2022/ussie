@@ -1,6 +1,6 @@
 # ussie 0.0.0.9000
 
-* Added functions, `uss_points()` and `uss_points_per_win()`. 
+* Added functions to calculate performance over a season: `uss_make_season_cumulative()`, `uss_make_season_final()`, and a helper `uss_points_per_win()`. (#5)
 
 * Added `uss_make_teams_matches()` to convert a `matches` tibble to a `teams-matches` tibble. (#1)
 

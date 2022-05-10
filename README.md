@@ -71,3 +71,5 @@ Development:
 -   `usethis::pr_init()`, `usethis::pr_push()`, `usethis::pr_finish()`,
     `usethis::pr_resume()`
 -   `usethis::use_news_md()`
+
+note, we need {shiny}, {diffviewer} to review snapshot tests
