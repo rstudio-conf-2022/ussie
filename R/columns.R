@@ -11,3 +11,8 @@ cols_teams_matches <- function() {
   c("country", "tier", "season", "team", "date", "at_home", "opponent",
    "goals_for", "goals_against")
 }
+
+cols_seasons <- function() {
+  c("country", "tier", "season", "team", "date", "matches", "wins", "draws",
+    "losses", "points", "goals_for", "goals_against")
+}
