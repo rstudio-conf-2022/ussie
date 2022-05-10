@@ -93,6 +93,9 @@
 <span class="fu">conflicted</span><span class="fu">::</span><span class="fu"><a href="https://conflicted.r-lib.org/reference/conflict_prefer.html" class="external-link">conflict_prefer</a></span><span class="op">(</span><span class="st">"filter"</span>, <span class="st">"dplyr"</span><span class="op">)</span>
 <span class="co">#&gt; [conflicted] Will prefer <span style="color: #0000BB;">dplyr::filter</span> over any other package</span></code></pre></div>
 <p>You can use the ussie package to work with data for league-play matches for European Football Leagues. The data is provided by James Curley’s <a href="https://CRAN.R-project.org/package=engsoccerdata" class="external-link"><strong>engsoccerdata</strong></a> package: the CRAN version has results through summer 2016; the <a href="https://github.com/jalapic/engsoccerdata" class="external-link">GitHub version</a> has more-recent results.</p>
+<div class="section level2">
+<h2 id="get-match-results">Get match results<a class="anchor" aria-label="anchor" href="#get-match-results"></a>
+</h2>
 <p>To find out which leagues are available, use <code><a href="../reference/uss_countries.html">uss_countries()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/uss_countries.html">uss_countries</a></span><span class="op">(</span><span class="op">)</span>
@@ -135,6 +138,10 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 1991-05-04 Leeds United Aston …          5             2</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 1990-12-26 Leeds United Chelsea          4             1</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 28 more rows</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="get-match-results-for-teams">Get match results for teams<a class="anchor" aria-label="anchor" href="#get-match-results-for-teams"></a>
+</h2>
 <p>In a <code>matches</code> tibble, each row is a unique football match. To make calculations over the course of a team’s season, it may be useful to provide an additional form: a <code>teams_matches</code> tibble. In this form, each row is a match from the perpsective of one of its teams. Thus, each match can be represented by two rows, one for each team.</p>
 <p>We can get <code>teams_matches</code> tibble using <code><a href="../reference/uss_make_teams_matches.html">uss_make_teams_matches()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -186,7 +193,84 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">20</span> England     1   <span style="text-decoration: underline;">1</span>990 Wimbledon          1990-09-29 TRUE    Manches…         1</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 1 more variable: goals_against &lt;int&gt;</span></span></code></pre></div>
 <p>You can see that each match is represented twice: once for the home team and once for the visiting team.</p>
-  </main>
+</div>
+<div class="section level2">
+<h2 id="get-season-results">Get season results<a class="anchor" aria-label="anchor" href="#get-season-results"></a>
+</h2>
+<p>We have another form: a <code>seasons</code> tibble. These contain results accumulated over seasons. We have a couple of functions, each takes a <code>teams_matches</code> data frame:</p>
+<ul>
+<li>
+<code><a href="../reference/uss_make_seasons_cumulative.html">uss_make_seasons_cumulative()</a></code>: returns cumulative results following every team’s matches.</li>
+<li>
+<code><a href="../reference/uss_make_seasons_cumulative.html">uss_make_seasons_final()</a></code>: returns results at the end of each team’s seasons.</li>
+</ul>
+<p>For each of these functions, the columns returned are the same: <code>matches</code>, <code>wins</code>, <code>losses</code>, etc:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">england_1_1990</span> |&gt;
+  <span class="fu"><a href="../reference/uss_make_seasons_cumulative.html">uss_make_seasons_cumulative</a></span><span class="op">(</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">team</span>, <span class="va">date</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 760 × 12</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># Groups:   country, tier, season, team [20]</span></span>
+<span class="co">#&gt;    country  tier season team    date       matches  wins draws losses points</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-08-25       1     1     0      0      3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-08-29       2     2     0      0      6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-01       3     2     1      0      7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-08       4     2     2      0      8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-15       5     3     2      0     11</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-22       6     4     2      0     14</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-09-29       7     4     3      0     15</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-06       8     5     3      0     18</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-20       9     6     3      0     21</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal 1990-10-27      10     7     3      0     24</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 750 more rows, and 2 more variables: goals_for &lt;int&gt;,</span></span>
+<span class="co">#&gt; <span style="color: #949494;">#   goals_against &lt;int&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">england_1_1990</span> |&gt;
+  <span class="fu"><a href="../reference/uss_make_seasons_cumulative.html">uss_make_seasons_final</a></span><span class="op">(</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 12</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># Groups:   country, tier, season [1]</span></span>
+<span class="co">#&gt;    country  tier season team        date       matches  wins draws losses points</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> England     1   <span style="text-decoration: underline;">1</span>990 Arsenal     1991-05-11      38    24    13      1     85</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> England     1   <span style="text-decoration: underline;">1</span>990 Liverpool   1991-05-11      38    23     7      8     76</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> England     1   <span style="text-decoration: underline;">1</span>990 Crystal Pa… 1991-05-11      38    20     9      9     69</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> England     1   <span style="text-decoration: underline;">1</span>990 Leeds Unit… 1991-05-11      38    19     7     12     64</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> England     1   <span style="text-decoration: underline;">1</span>990 Manchester… 1991-05-11      38    17    11     10     62</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> England     1   <span style="text-decoration: underline;">1</span>990 Manchester… 1991-05-20      38    16    12     10     60</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> England     1   <span style="text-decoration: underline;">1</span>990 Wimbledon   1991-05-11      38    14    14     10     56</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> England     1   <span style="text-decoration: underline;">1</span>990 Nottingham… 1991-05-11      38    14    12     12     54</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> England     1   <span style="text-decoration: underline;">1</span>990 Everton     1991-05-11      38    13    12     13     51</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> England     1   <span style="text-decoration: underline;">1</span>990 Chelsea     1991-05-11      38    13    10     15     49</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> England     1   <span style="text-decoration: underline;">1</span>990 Tottenham … 1991-05-20      38    11    16     11     49</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> England     1   <span style="text-decoration: underline;">1</span>990 Queens Par… 1991-05-11      38    12    10     16     46</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span> England     1   <span style="text-decoration: underline;">1</span>990 Sheffield … 1991-05-11      38    13     7     18     46</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span> England     1   <span style="text-decoration: underline;">1</span>990 Norwich Ci… 1991-05-11      38    13     6     19     45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span> England     1   <span style="text-decoration: underline;">1</span>990 Southampton 1991-05-11      38    12     9     17     45</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span> England     1   <span style="text-decoration: underline;">1</span>990 Coventry C… 1991-05-11      38    11    11     16     44</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">17</span> England     1   <span style="text-decoration: underline;">1</span>990 Aston Villa 1991-05-11      38     9    14     15     41</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">18</span> England     1   <span style="text-decoration: underline;">1</span>990 Luton Town  1991-05-11      38    10     7     21     37</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">19</span> England     1   <span style="text-decoration: underline;">1</span>990 Sunderland  1991-05-11      38     8    10     20     34</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">20</span> England     1   <span style="text-decoration: underline;">1</span>990 Derby Coun… 1991-05-11      38     5     9     24     24</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: goals_for &lt;int&gt;, goals_against &lt;int&gt;</span></span></code></pre></div>
+<p>You can call these functions has an optional argument to specify points-per-win. This argument, <code>fn_points_per_win</code> is meant to be a function, when called with arguments <code>country</code> and <code>season</code>, returns the number of points for a win that season. A default, <code><a href="../reference/uss_points_per_win.html">uss_points_per_win()</a></code>, is provided:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_points_per_win.html">uss_points_per_win</a></span><span class="op">(</span><span class="st">"england"</span>, <span class="fl">1980</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2</span></code></pre></div>
+<p>Any function you provide must be vectorised over <code>country</code> and <code>season</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_points_per_win.html">uss_points_per_win</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"england"</span>, <span class="st">"england"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1980</span>, <span class="fl">1981</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2 3</span></code></pre></div>
+<p>If you just want to specify a constant two or three points per season, you can provide an anonymous function. If you are using R &gt; 4.1.0, you can use the new syntax:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="fl">3</span> <span class="co"># use dots to allow unspecified arguments to pass</span>
+
+<span class="fu">p</span><span class="op">(</span><span class="st">"england"</span>, <span class="fl">1066</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3</span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

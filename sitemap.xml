@@ -40,7 +40,13 @@
     <loc>/reference/uss_make_matches.html</loc>
   </url>
   <url>
+    <loc>/reference/uss_make_seasons_cumulative.html</loc>
+  </url>
+  <url>
     <loc>/reference/uss_make_teams_matches.html</loc>
+  </url>
+  <url>
+    <loc>/reference/uss_points_per_win.html</loc>
   </url>
   <url>
     <loc>/reference/ussie-package.html</loc>
