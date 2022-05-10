@@ -4,19 +4,27 @@
 \alias{uss_points_per_win}
 \title{Calculate points}
 \usage{
-uss_points_per_win(country, season)
+uss_points_per_win(country, season, default = 3)
 }
 \arguments{
 \item{country}{\code{character} scalar, specifies the league.
 \code{uss_countries()} returns choices available from {engsoccerdata}}
 
 \item{season}{\code{integer}-ish year of the football season.}
+
+\item{default}{\code{integer}-ish default value for points-per-win, used if
+a value of \code{country} is not in \code{uss_countries()}.}
 }
 \value{
 \code{integer} number of points per win
 }
 \description{
-Calculate points
+Given \code{country} and \code{season}, return the number of points for a win.
+}
+\details{
+This function is vectorized over \code{country} and \code{season}; they should have
+the same length. If any \code{country} is not in \code{uss_countries}, a warning
+is issued, defauuthe \code{3} is returned for
 }
 \examples{
 uss_points_per_win("england", 1980)
