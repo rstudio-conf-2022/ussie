@@ -1,0 +1,50 @@
+---
+title: "Making result"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Making result}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ussie)
+```
+
+This is going to be more of a restating/remixing of the [S3 vignette in vctrs](https://vctrs.r-lib.org/articles/s3-vector.html), rather than a how-to-use-something-in-this-package.
+Essentially, it's a set of notes to myself as I figure out how best to present it.
+
+First a couple of namespace directives:
+
+```r
+usethis::use_package("vctrs")
+```
+
+Then, copy and paste into `ussie-package.R`:
+
+```r
+#' Internal vctrs methods
+#  TODO: ask why it's important that this be documented, i.e. why not
+#  just `@import vctrs` in the `usethis namespace`?
+#'
+#' @import vctrs
+#' @keywords internal
+#' @name ussie-vctrs
+NULL
+```
+
+We need to define some functions:
+
+- `new_result()`: low-level constructor
+- `uss_result()`: high-level constructor
+- `format.ussie_result()`: formatter
+- `vec_ptype_abbr.ussie_result()`, `vec_ptype_fill.ussie_result()`: format helpers
+
+

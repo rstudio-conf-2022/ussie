@@ -124,3 +124,14 @@ p <- \(...) 3 # use dots to allow unspecified arguments to pass
 
 p("england", 1066)
 ```
+
+### Add results
+
+```{r uss_result}
+uss_get_matches("italy") |>
+  uss_make_teams_matches() |>
+  mutate(
+    result = uss_result(goals_for, goals_against),
+    .after = opponent
+  )
+```
