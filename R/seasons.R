@@ -1,12 +1,3 @@
-cols_seasons_grouping <- function() {
-  c("country", "tier", "season", "team")
-}
-
-cols_seasons_accumulate <- function() {
-  c("matches", "wins", "draws", "losses", "points",
-    "goals_for", "goals_against")
-}
-
 #' Make intermediate calculation for seasons
 #'
 #' Given a teams-matches data frame,
@@ -16,7 +7,7 @@ cols_seasons_accumulate <- function() {
 #' Each row is local to each match having been played.
 #'
 #' The purpose is either to set up cumulative results within a season,
-#' ot to set up final results for the season.
+#' or to set up final results for the season.
 #'
 #' @noRd
 #'
@@ -24,7 +15,9 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
 
   result <-
     data_teams_matches |>
-    dplyr::group_by(dplyr::across(cols_seasons_grouping())) |>
+    # across() lets you use tidy-select semantics inside data-masking functions
+    # - https://dplyr.tidyverse.org/articles/colwise.html
+    dplyr::group_by(dplyr::across(dplyr::all_of(cols_seasons_grouping()))) |>
     dplyr::transmute(
       date = .data$date,
       matches = TRUE,
@@ -75,7 +68,7 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
     data_teams_matches |>
     seasons_intermediate(fn_points_per_win) |>
     dplyr::mutate(
-      dplyr::across(cols_seasons_accumulate(), cumsum)
+      dplyr::across(dplyr::all_of(cols_seasons_accumulate()), cumsum)
     )
 
   result
@@ -87,6 +80,14 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
 uss_make_seasons_final <- function(data_teams_matches,
                                   fn_points_per_win = uss_points_per_win) {
 
+  # perhaps it could be an exercise to copy/paste uss_make_seasons_cumulative()
+  # to make this function.
+  #
+  # - add minimal roxygen at top
+  # - change mutate() to summarise()
+  # - add treatment for date
+  # - change cumsum to sum
+
   validate_data_frame(data_teams_matches)
   validate_cols(data_teams_matches, cols_teams_matches())
 
@@ -95,7 +96,7 @@ uss_make_seasons_final <- function(data_teams_matches,
     seasons_intermediate(fn_points_per_win) |>
     dplyr::summarise(
       date = max(.data$date),
-      dplyr::across(cols_seasons_accumulate(), sum)
+      dplyr::across(dplyr::all_of(cols_seasons_accumulate()), sum)
     )
 
   result

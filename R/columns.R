@@ -16,3 +16,12 @@ cols_seasons <- function() {
   c("country", "tier", "season", "team", "date", "matches", "wins", "draws",
     "losses", "points", "goals_for", "goals_against")
 }
+
+cols_seasons_grouping <- function() {
+  c("country", "tier", "season", "team")
+}
+
+cols_seasons_accumulate <- function() {
+  c("matches", "wins", "draws", "losses", "points",
+    "goals_for", "goals_against")
+}
