@@ -10,6 +10,8 @@ expect_snapshot_ggplot <- function(name, code, width = 4, height = 4) {
   # Other packages might affect results
   testthat::skip_if_not_installed("ggplot2", "2.0.0")
 
+  testthat::skip_on_ci()
+
   name <- paste0(name, ".png")
 
   # Announce the file before touching `code`. This way, if `code`
@@ -20,6 +22,7 @@ expect_snapshot_ggplot <- function(name, code, width = 4, height = 4) {
   # temp file at `path` deleted when `expect_snapshot_plot()` exits
   path <- withr::local_tempfile(fileext = ".png")
 
+  # ggsave() uses inches for `width`, `height`
   ggplot2::ggsave(path, plot = code, width = width, height = height)
 
   testthat::expect_snapshot_file(path, name)
