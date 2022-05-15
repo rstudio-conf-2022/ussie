@@ -29,7 +29,7 @@ Returns a ggplot:
 }
 }
 \examples{
-seas <-
+leeds_norwich <-
   uss_get_matches("england") |>
   uss_make_teams_matches() |>
   dplyr::filter(team \%in\% c("Leeds United", "Norwich City")) |>
@@ -37,8 +37,8 @@ seas <-
   dplyr::arrange(team, season)
 
 # use default (wins)
-uss_plot_seasons_tiers(seas)
+uss_plot_seasons_tiers(leeds_norwich)
 
 # use custom expression
-uss_plot_seasons_tiers(seas, goals_for - goals_against)
+uss_plot_seasons_tiers(leeds_norwich, goals_for - goals_against)
 }

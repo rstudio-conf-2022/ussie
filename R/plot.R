@@ -13,7 +13,7 @@
 #'
 #' @return Object with S3 classes `"gg"`, `"ggplot"`, i.e. a ggplot2 object.
 #' @examples
-#' seas <-
+#' leeds_norwich <-
 #'   uss_get_matches("england") |>
 #'   uss_make_teams_matches() |>
 #'   dplyr::filter(team %in% c("Leeds United", "Norwich City")) |>
@@ -21,10 +21,10 @@
 #'   dplyr::arrange(team, season)
 #'
 #' # use default (wins)
-#' uss_plot_seasons_tiers(seas)
+#' uss_plot_seasons_tiers(leeds_norwich)
 #'
 #' # use custom expression
-#' uss_plot_seasons_tiers(seas, goals_for - goals_against)
+#' uss_plot_seasons_tiers(leeds_norwich, goals_for - goals_against)
 #' @export
 #'
 uss_plot_seasons_tiers <- function(data_seasons, aes_y = .data$wins, ncol = 1) {
