@@ -1,4 +1,36 @@
+#' Plot over season-final results
+#'
+#' Returns a ggplot:
+#'  - `season` on the x-axis
+#'  - faceted by `team`
+#'  - has two layers:
+#'    - rectangles shaded by tier
+#'    - points showing some measure (default `wins`) on the y-axis
+#'
+#' @param data_seasons, data frame created using [uss_make_seasons_final()].
+#' @param aes_y, `<data-masking>` expression used for the y-aesthetic.
+#' @param ncol, `integer`-ish number of columns in facet.
+#'
+#' @return Object with S3 classes `"gg"`, `"ggplot"`, i.e. a ggplot2 object.
+#' @examples
+#' seas <-
+#'   uss_get_matches("england") |>
+#'   uss_make_teams_matches() |>
+#'   dplyr::filter(team %in% c("Leeds United", "Norwich City")) |>
+#'   uss_make_seasons_final() |>
+#'   dplyr::arrange(team, season)
+#'
+#' # use default (wins)
+#' uss_plot_seasons_tiers(seas)
+#'
+#' # use custom expression
+#' uss_plot_seasons_tiers(seas, goals_for - goals_against)
+#' @export
+#'
 uss_plot_seasons_tiers <- function(data_seasons, aes_y = .data$wins, ncol = 1) {
+
+  validate_data_frame(data_seasons)
+  validate_cols(data_seasons, cols_seasons())
 
   ggplot2::ggplot(data_seasons) +
     ggplot2::geom_rect(
@@ -18,6 +50,7 @@ uss_plot_seasons_tiers <- function(data_seasons, aes_y = .data$wins, ncol = 1) {
       ),
       color = "#333333"
     ) +
+    # we want to show only the tiers that appear in the data
     # force() is a base function
     # see: https://github.com/tidyverse/ggplot2/issues/4511#issuecomment-866185530
     ggplot2::scale_alpha_manual(
