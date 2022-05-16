@@ -147,7 +147,7 @@ The default is to show the `wins` on the y-axis:
 uss_plot_seasons_tiers(leeds_norwich)
 ```
 
-You can provide an argument `aes_y` where you can supply an expression just as you would for ggplot2:
+You can provide an argument, `aes_y`, where you can supply an expression just as you would for ggplot2:
 
 ```{r plot_wins_losses}
 uss_plot_seasons_tiers(leeds_norwich, aes_y = wins - losses)
