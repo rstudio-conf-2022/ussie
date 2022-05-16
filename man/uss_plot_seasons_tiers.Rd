@@ -27,6 +27,9 @@ Returns a ggplot:
 \item points showing some measure (default \code{wins}) on the y-axis
 }
 }
+
+Of the countries included in \code{\link[=uss_countries]{uss_countries()}}, only \code{"england"} has data for
+more than one \code{tier}.
 }
 \examples{
 leeds_norwich <-

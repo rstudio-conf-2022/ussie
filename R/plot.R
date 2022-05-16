@@ -1,11 +1,15 @@
 #' Plot over season-final results
 #'
+#' @description
 #' Returns a ggplot:
 #'  - `season` on the x-axis
 #'  - faceted by `team`
 #'  - has two layers:
 #'    - rectangles shaded by tier
 #'    - points showing some measure (default `wins`) on the y-axis
+#'
+#' Of the countries included in [uss_countries()], only `"england"` has data for
+#' more than one `tier`.
 #'
 #' @param data_seasons, data frame created using [uss_make_seasons_final()].
 #' @param aes_y, `<data-masking>` expression used for the y-aesthetic.
