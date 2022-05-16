@@ -125,7 +125,35 @@ p <- \(...) 3 # use dots to allow unspecified arguments to pass
 p("england", 1066)
 ```
 
-### Add results
+## Plot results over seasons
+
+Of the countries included in `uss_countries()`, only `"england"` has data for more than one `tier`, where we can see the effects of relegation and promotion. 
+You can use `uss_plot_seasons_tiers()` to look at performance over seasons, using data returned from `uss_make_seasons_final()`:
+
+```{r leeds_norwich}
+leeds_norwich <- 
+  uss_get_matches("england") |>
+  uss_make_teams_matches() |>
+  filter(team %in% c("Leeds United", "Norwich City")) |>
+  uss_make_seasons_final() |>
+  arrange(team, season)
+
+leeds_norwich
+```
+
+The default is to show the `wins` on the y-axis:
+
+```{r plot_wins}
+uss_plot_seasons_tiers(leeds_norwich)
+```
+
+You can provide an argument, `aes_y`, where you can supply an expression just as you would for ggplot2:
+
+```{r plot_wins_losses}
+uss_plot_seasons_tiers(leeds_norwich, aes_y = wins - losses)
+```
+
+## Add results
 
 ```{r uss_result}
 uss_get_matches("italy") |>

@@ -22,7 +22,8 @@ Imports:
     utils,
     withr,
     vctrs,
-    glue
+    glue,
+    ggplot2
 Suggests: 
     knitr,
     rmarkdown,

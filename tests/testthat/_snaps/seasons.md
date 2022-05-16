@@ -7,7 +7,7 @@
       Columns: 12
       Groups: country, tier, season, team [1,516]
       $ country       <chr> "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "I~
-      $ tier          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+      $ tier          <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
       $ season        <int> 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 19~
       $ team          <chr> "AC Milan", "AC Milan", "AC Milan", "AC Milan", "AC Mila~
       $ date          <date> 1929-10-06, 1929-10-13, 1929-10-20, 1929-10-27, 1929-11~
@@ -28,7 +28,7 @@
       Columns: 12
       Groups: country, tier, season, team [1,516]
       $ country       <chr> "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "I~
-      $ tier          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+      $ tier          <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
       $ season        <int> 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 19~
       $ team          <chr> "AC Milan", "AC Milan", "AC Milan", "AC Milan", "AC Mila~
       $ date          <date> 1929-10-06, 1929-10-13, 1929-10-20, 1929-10-27, 1929-11~
@@ -49,7 +49,7 @@
       Columns: 12
       Groups: country, tier, season [85]
       $ country       <chr> "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "I~
-      $ tier          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
+      $ tier          <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
       $ season        <int> 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 19~
       $ team          <chr> "AC Milan", "AS Roma", "Bologna FC", "Brescia Calcio", "~
       $ date          <date> 1930-07-06, 1930-07-06, 1930-07-06, 1930-07-06, 1930-07~
