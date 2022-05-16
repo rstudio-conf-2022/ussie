@@ -37,7 +37,7 @@ new_result <- function(goals_for = integer(), goals_against = integer()) {
 
   # validate
   vec_assert(goals_for, integer())
-  vec_assert(goals_against, integer())
+  vec_assert(goals_against, integer(), size = length(goals_for))
 
   # construct
   new_rcrd(
