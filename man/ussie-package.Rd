@@ -8,11 +8,6 @@
 \description{
 This is a first pass at a demo package for the "Building Tidy Tools" course at rstudio::conf(2022L).
 }
-\section{Additional information}{
-
-A place to put some more words, beyond what is in the DESCRIPTION file.
-}
-
 \seealso{
 Useful links:
 \itemize{
