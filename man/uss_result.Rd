@@ -2,7 +2,7 @@
 % Please edit documentation in R/result.R
 \name{uss_result}
 \alias{uss_result}
-\title{Structure for printing}
+\title{Structure for printing results}
 \usage{
 uss_result(goals_for = integer(), goals_against = integer())
 }
@@ -15,7 +15,12 @@ uss_result(goals_for = integer(), goals_against = integer())
 An S3 object with class \code{ussie_result}.
 }
 \description{
-\code{goals_for} and \code{goals_against} must have the same length.
+For \code{teams_matches} tibbles, it can be convenient to see the result as a
+structure, rather than using only \code{goals_for} and \code{goals_against}.
+}
+\details{
+This function is vectorized over \code{goals_for} and \code{goals_against}; they must
+have the same length.
 }
 \examples{
 uss_result(3, 2)

@@ -1,6 +1,10 @@
-#' Structure for printing
+#' Structure for printing results
 #'
-#' `goals_for` and `goals_against` must have the same length.
+#' For `teams_matches` tibbles, it can be convenient to see the result as a
+#' structure, rather than using only `goals_for` and `goals_against`.
+#'
+#' This function is vectorized over `goals_for` and `goals_against`; they must
+#' have the same length.
 #'
 #' @param goals_for `integer`-ish number of goals for a team in a match.
 #' @param goals_against `integer`-ish number of goals against a team in a match.
