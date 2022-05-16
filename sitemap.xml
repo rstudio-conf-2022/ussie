@@ -13,6 +13,9 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/result.html</loc>
+  </url>
+  <url>
     <loc>/articles/ussie.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>/reference/uss_points_per_win.html</loc>
+  </url>
+  <url>
+    <loc>/reference/uss_result.html</loc>
   </url>
   <url>
     <loc>/reference/ussie-package.html</loc>

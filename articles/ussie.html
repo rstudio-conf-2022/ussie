@@ -41,6 +41,12 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/result.html">Making result</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -306,6 +312,37 @@
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/uss_plot_seasons_tiers.html">uss_plot_seasons_tiers</a></span><span class="op">(</span><span class="va">leeds_norwich</span>, aes_y <span class="op">=</span> <span class="va">wins</span> <span class="op">-</span> <span class="va">losses</span><span class="op">)</span></code></pre></div>
 <p><img src="ussie_files/figure-html/plot_wins_losses-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="add-results">Add results<a class="anchor" aria-label="anchor" href="#add-results"></a>
+</h2>
+<p>We use the <a href="https://vctrs.r-lib.org/index.html" class="external-link"><strong>vctrs</strong></a> package to help build a function, <code><a href="../reference/uss_result.html">uss_result()</a></code> that creates an S3 vector to display results:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_get_matches.html">uss_get_matches</a></span><span class="op">(</span><span class="st">"italy"</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="../reference/uss_make_teams_matches.html">uss_make_teams_matches</a></span><span class="op">(</span><span class="op">)</span> |&gt;
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
+    result <span class="op">=</span> <span class="fu"><a href="../reference/uss_result.html">uss_result</a></span><span class="op">(</span><span class="va">goals_for</span>, <span class="va">goals_against</span><span class="op">)</span>,
+    .after <span class="op">=</span> <span class="va">opponent</span>
+  <span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 50,808 × 10</span></span>
+<span class="co">#&gt;    country tier  season team     date       at_home opponent    result goals_for</span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;uss_&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-10-06 TRUE    Brescia Ca…  W 4-1         4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-10-13 TRUE    Modena FC    W 1-0         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-10-20 FALSE   SSC Napoli   L 1-2         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-10-27 TRUE    AS Roma      W 3-1         3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-11-03 FALSE   Bologna FC   D 1-1         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-11-10 TRUE    Inter        L 1-2         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-11-17 FALSE   US Livorno   L 1-4         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-11-24 TRUE    Lazio Roma   W 2-1         2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-12-08 FALSE   Juventus     L 1-3         1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Italy   1       <span style="text-decoration: underline;">1</span>929 AC Milan 1929-12-15 TRUE    US Cremone…  W 5-2         5</span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 50,798 more rows, and 1 more variable: goals_against &lt;int&gt;</span></span></code></pre></div>
+<p>At this point, the only method defined for <code><a href="../reference/uss_result.html">uss_result()</a></code> is <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format()</a></code>. The function is vectorised; the arguments must be the same length:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/uss_result.html">uss_result</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; &lt;ussie_result[3]&gt;</span>
+<span class="co">#&gt; [1] L 1-2 D 2-2 W 3-2</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

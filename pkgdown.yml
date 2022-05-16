@@ -2,6 +2,7 @@ pandoc: 2.7.3
 pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
+  result: result.html
   ussie: ussie.html
-last_built: 2022-05-16T01:59Z
+last_built: 2022-05-16T03:07Z
 
