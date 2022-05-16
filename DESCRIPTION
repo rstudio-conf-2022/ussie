@@ -20,7 +20,8 @@ Imports:
     memoise,
     rlang (>= 0.4.11),
     utils,
-    withr
+    withr,
+    ggplot2
 Suggests: 
     knitr,
     rmarkdown,
