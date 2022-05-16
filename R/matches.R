@@ -181,6 +181,10 @@ uss_get_matches <- function(country = uss_countries(), ...) {
   # 2. pipe the results to `dplyr::filter(...)`
   # 3. @inheritDotParams dplyr::filter
   # 4. a few words in the description
+  #
+  # keep in mind to use dot-prefix for the other args
+  # (but we aren't doing that here)
+  # https://design.tidyverse.org/dots-prefix.html
 
   # tidyverse variant of match.arg
   country <- rlang::arg_match(country)

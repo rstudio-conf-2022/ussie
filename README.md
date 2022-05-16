@@ -62,9 +62,9 @@ Development:
 -   `usethis::use_github_action_check_release()` minimal check
     -   `usethis::use_github_action_check_standard()` if thinking of
         CRAN
--   `usethis::use_tidy_eval()`
--   `usethis::use_package_doc()`, then `usethis::use_tibble()` - so this
-    may have to be earlier in the process.
+-   `usethis::use_package_doc()`, then `usethis::use_tibble()`
+    -   add `#' @importFrom rlang .data` to `ussie-package.R` - prefer
+        this to `usethis::use_tidy_eval()`
 -   `usethis::use_pkgdown()`, `usethis::use_github_action("pkgdown")`
 -   `usethis::use_github_pages()`: configure GH pages once the pkg
     action succeds, wait a minute et voilà!
