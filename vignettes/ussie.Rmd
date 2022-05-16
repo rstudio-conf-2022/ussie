@@ -155,6 +155,8 @@ uss_plot_seasons_tiers(leeds_norwich, aes_y = wins - losses)
 
 ## Add results
 
+We use the [**vctrs**](https://vctrs.r-lib.org/index.html) package to help build a function, `uss_result()` that creates an S3 vector to display results:
+
 ```{r uss_result}
 uss_get_matches("italy") |>
   uss_make_teams_matches() |>
@@ -162,4 +164,11 @@ uss_get_matches("italy") |>
     result = uss_result(goals_for, goals_against),
     .after = opponent
   )
+```
+
+At this point, the only method defined for `uss_result()` is `format()`.
+The function is vectorised; the arguments must be the same length:
+
+```{r uss_result_vector}
+uss_result(c(1, 2, 3), c(2, 2, 2))
 ```
