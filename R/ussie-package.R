@@ -6,5 +6,7 @@
 
 ## usethis namespace: start
 #' @importFrom tibble tibble
+#' @import vctrs
 ## usethis namespace: end
 NULL
+

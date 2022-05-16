@@ -21,6 +21,8 @@ Imports:
     rlang (>= 0.4.11),
     utils,
     withr,
+    vctrs,
+    glue,
     ggplot2
 Suggests: 
     knitr,
