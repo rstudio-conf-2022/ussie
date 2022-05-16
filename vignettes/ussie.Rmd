@@ -134,9 +134,9 @@ You can use `uss_plot_seasons_tiers()` to look at performance over seasons, usin
 leeds_norwich <- 
   uss_get_matches("england") |>
   uss_make_teams_matches() |>
-  dplyr::filter(team %in% c("Leeds United", "Norwich City")) |>
+  filter(team %in% c("Leeds United", "Norwich City")) |>
   uss_make_seasons_final() |>
-  dplyr::arrange(team, season)
+  arrange(team, season)
 
 leeds_norwich
 ```
