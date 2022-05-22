@@ -65,6 +65,8 @@ Development:
 -   `usethis::use_package_doc()`, then `usethis::use_tibble()`
     -   add `#' @importFrom rlang .data` to `ussie-package.R` - prefer
         this to `usethis::use_tidy_eval()`
+    -   even better: `usethis::use_import_from()`,
+        e.g. `usethis::use_import_from("rlang", ".data")`
 -   `usethis::use_pkgdown()`, `usethis::use_github_action("pkgdown")`
 -   `usethis::use_github_pages()`: configure GH pages once the pkg
     action succeds, wait a minute et voilà!
