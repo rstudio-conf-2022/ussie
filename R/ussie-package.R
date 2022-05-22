@@ -3,9 +3,11 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom tibble tibble
-#' @importFrom rlang .data
 #' @import vctrs
+#' @importFrom rlang :=
+#' @importFrom rlang .data
+#' @importFrom rlang .env
+#' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
 
