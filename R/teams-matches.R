@@ -23,22 +23,44 @@ uss_make_teams_matches <- function(data_matches) {
   validate_data_frame(data_matches)
   validate_cols(data_matches, cols_matches())
 
+  # A couple points here:
+  #  - `!!!` splice operator, reflects `...` - unpacks contents for splicing
+  #  - We can use `at_home` as a bare name because `dplyr::mutate()` takes
+  #    `...`, which permits named arguments of "unknown" names.
+  #    As well, this is OK "morally" because `at_home` can refer only to
+  #    a column in the data frame.
+  #
   teams_matches_home <-
     data_matches |>
     dplyr::rename(!!!rename_home()) |>
     dplyr::mutate(at_home = TRUE)
 
+  # This is oh-so contrived, but it gives us a chance to show off two more
+  # features of tidy eval:
+  #  - `.env` pronoun, don't forget `usethis::use_import_from("rlang", ".env")`
+  #  - `:=` to invoke naming, `"{}"` glue syntax in name
+  #
+  name_of_at_home <- "at_home"
+  at_home <- FALSE
   teams_matches_visitor <-
     data_matches |>
     dplyr::rename(!!!rename_visitor()) |>
-    dplyr::mutate(at_home = FALSE)
+    dplyr::mutate("{name_of_at_home}" := .env$at_home)
 
+  # I'm finding that `dplyr::all_of()` does not seem to be strictly necessary.
+  # It's bulky, but I think it remains a good practice because it asserts that
+  # these columns shall be in the data frame; something is wrong if not.
+  #
   result <-
     teams_matches_home |>
     dplyr::bind_rows(teams_matches_visitor) |>
     dplyr::select(dplyr::all_of(cols_teams_matches())) |>
     dplyr::arrange(
-      dplyr::across(c("country", "tier", "season", "team", "date"))
+      dplyr::across(
+        dplyr::all_of(
+          c("country", "tier", "season", "team", "date")
+        )
+      )
     )
 
   result
