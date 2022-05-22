@@ -10,7 +10,8 @@ test_that("uss_make_teams_matches works", {
 
   italy <- uss_get_matches("italy") |> uss_make_teams_matches()
   expect_named(italy, cols_teams_matches())
+
   # not comprehensive, but may give us a indication if something changes
-  expect_snapshot(head(italy))
+  expect_snapshot(dplyr::glimpse(italy))
 
 })
