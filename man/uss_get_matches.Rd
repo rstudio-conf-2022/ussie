@@ -23,6 +23,7 @@ Only rows for which all conditions evaluate to \code{TRUE} are kept.}
 Gets league-play data for each game, from {engsoccerdata}, returning
 a tibble in a standardised format. You can pass in filtering expressions
 via the dots (\code{...}), these are evaluated using \code{\link[dplyr:filter]{dplyr::filter()}}.
+Filtering is the last step; it operates on the \strong{returned} data.
 }
 \details{
 \code{uss_countries()} returns the available choices; \code{"england"} is

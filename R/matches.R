@@ -115,7 +115,7 @@ uss_make_matches <- function(data_engsoc, country) {
   # The idea here would be to establish this function without using the
   # `.data` pronoun, see that it works but does not pass R CMD CHECK cleanly 🙀
   #
-  # 1. usethis::use_tidy_eval() to access the `.data` pronoun
+  # 1. usethis::use_import_from("rlang", ".data") to access the `.data` pronoun
   # 2. change `as.integer(tier)` to `as.integer(.data$tier)`, etc.
   #
   # Note: we don't "pass-the-dots" to `dplyr::filter()` here becuase
@@ -156,6 +156,7 @@ uss_make_matches_mem <- function(data_engsoc, country) {
 #' Gets league-play data for each game, from {engsoccerdata}, returning
 #' a tibble in a standardised format. You can pass in filtering expressions
 #' via the dots (`...`), these are evaluated using [dplyr::filter()].
+#' Filtering is the last step; it operates on the **returned** data.
 #'
 #' `uss_countries()` returns the available choices; `"england"` is
 #' the default.
