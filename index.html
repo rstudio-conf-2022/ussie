@@ -121,8 +121,12 @@
 <code>usethis::use_github_action_check_standard()</code> if thinking of CRAN</li></ul>
 </li>
 <li>
-<code>usethis::use_package_doc()</code>, then <code>usethis::use_tibble()</code><ul><li>add <code>#' @importFrom rlang .data</code> to <code>ussie-package.R</code> - prefer this to <code>usethis::use_tidy_eval()</code>
-</li></ul>
+<code>usethis::use_package_doc()</code>, then <code>usethis::use_tibble()</code><ul>
+<li>add <code>#' @importFrom rlang .data</code> to <code>ussie-package.R</code> - prefer this to <code>usethis::use_tidy_eval()</code>
+</li>
+<li>even better: <code>usethis::use_import_from()</code>, e.g. <code>usethis::use_import_from("rlang", ".data")</code>
+</li>
+</ul>
 </li>
 <li>
 <code>usethis::use_pkgdown()</code>, <code>usethis::use_github_action("pkgdown")</code>
