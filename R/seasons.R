@@ -17,7 +17,11 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
     data_teams_matches |>
     # across() lets you use tidy-select semantics inside data-masking functions
     # - https://dplyr.tidyverse.org/articles/colwise.html
-    dplyr::group_by(dplyr::across(dplyr::all_of(cols_seasons_grouping()))) |>
+    dplyr::group_by(
+      dplyr::across(
+        dplyr::all_of(cols_seasons_grouping())
+      )
+    ) |>
     dplyr::transmute(
       date = .data$date,
       matches = TRUE,
@@ -59,7 +63,7 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
 #' @export
 #'
 uss_make_seasons_cumulative <- function(data_teams_matches,
-                                       fn_points_per_win = uss_points_per_win) {
+                                        fn_points_per_win = uss_points_per_win) {
 
   validate_data_frame(data_teams_matches)
   validate_cols(data_teams_matches, cols_teams_matches())
@@ -68,7 +72,10 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
     data_teams_matches |>
     seasons_intermediate(fn_points_per_win) |>
     dplyr::mutate(
-      dplyr::across(dplyr::all_of(cols_seasons_accumulate()), cumsum)
+      dplyr::across(
+        dplyr::all_of(cols_seasons_accumulate()),
+        cumsum
+      )
     )
 
   result
@@ -78,7 +85,7 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
 #' @export
 #'
 uss_make_seasons_final <- function(data_teams_matches,
-                                  fn_points_per_win = uss_points_per_win) {
+                                   fn_points_per_win = uss_points_per_win) {
 
   # perhaps it could be an exercise to copy/paste uss_make_seasons_cumulative()
   # to make this function.
@@ -96,7 +103,10 @@ uss_make_seasons_final <- function(data_teams_matches,
     seasons_intermediate(fn_points_per_win) |>
     dplyr::summarise(
       date = max(.data$date),
-      dplyr::across(dplyr::all_of(cols_seasons_accumulate()), sum)
+      dplyr::across(
+        dplyr::all_of(cols_seasons_accumulate()),
+        sum
+      )
     )
 
   result
