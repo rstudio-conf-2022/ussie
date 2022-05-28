@@ -91,7 +91,8 @@ return return a data frame on wins, losses, points, etc.:</p><ul><li><p>cumulati
 <dd><p><code>function</code> with vectorized arguments <code>country</code>,
 <code>season</code>, that returns a integer indicating points-per-win.
 A default function is provided, <code><a href="uss_points_per_win.html">uss_points_per_win()</a></code>, which includes
-the countries in <code><a href="uss_countries.html">uss_countries()</a></code>.</p></dd>
+the countries in <code><a href="uss_countries.html">uss_countries()</a></code>. You can also provide a purrr-style
+anonymous function, e.g. <code>~3</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
