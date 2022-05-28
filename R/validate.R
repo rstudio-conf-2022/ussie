@@ -78,7 +78,6 @@ validate_data_frame <- function(.data) {
 #' \dontrun{
 #'   validate_cols(mtcars, cols_req = c("bill_length_mm"))
 #' }
-#'
 #' @noRd
 #'
 validate_cols <- function(.data, cols_req) {

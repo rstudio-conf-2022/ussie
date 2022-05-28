@@ -61,6 +61,9 @@ uss_plot_seasons_tiers <- function(data_seasons, aes_y = .data$wins, ncol = 1) {
       values = c(`1` = 0.1, `2` = 0.3, `3` = 0.5, `4` = 0.7),
       limits = force
     ) +
+    # vars() is weird: https://github.com/tidyverse/ggplot2/issues/4374
+    # - could something like dplyr::across() be implemented here, or would
+    #   that be more trouble than it's worth?
     ggplot2::facet_wrap(ggplot2::vars(.data$team), ncol = ncol)
 
 }

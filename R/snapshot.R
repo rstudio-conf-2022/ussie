@@ -4,7 +4,9 @@
 # The big changes here are:
 #  - using ggsave, withr functions
 #  - do everything in one function
-
+#
+# Question: could a function like this be useful as a part of ggplot2?
+#
 expect_snapshot_ggplot <- function(name, code, width = 4, height = 4) {
 
   # Other packages might affect results
