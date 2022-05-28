@@ -21,7 +21,8 @@ uss_make_seasons_final(
 \item{fn_points_per_win}{\code{function} with vectorized arguments \code{country},
 \code{season}, that returns a integer indicating points-per-win.
 A default function is provided, \code{\link[=uss_points_per_win]{uss_points_per_win()}}, which includes
-the countries in \code{\link[=uss_countries]{uss_countries()}}.}
+the countries in \code{\link[=uss_countries]{uss_countries()}}. You can also provide a purrr-style
+anonymous function, e.g. \code{~3}.}
 }
 \value{
 \link[tibble:tibble-package]{tibble} with columns

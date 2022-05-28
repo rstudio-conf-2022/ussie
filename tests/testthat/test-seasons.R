@@ -7,6 +7,13 @@ test_that("seasons_intermediate() works", {
   expect_named(italy, cols_seasons())
   # not comprehensive, but may give us a indication if something changes
   expect_snapshot(dplyr::glimpse(italy))
+
+  # make sure we can pass a purr-style anonymous function for points
+  italy_5_wins <-
+    seasons_intermediate(teams_matches_italy, ~5L) |>
+    dplyr::filter(wins == TRUE)
+
+  expect_identical(unique(italy_5_wins$points), 5L)
 })
 
 test_that("uss_make_seasons_cumulative() works", {
