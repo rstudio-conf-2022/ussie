@@ -26,7 +26,7 @@ uss_result <- function(goals_for = integer(), goals_against = integer()) {
 
   # coerce to integer
   goals_for <- vec_cast(goals_for, to = integer())
-  goals_against <-vec_cast(goals_against, to = integer())
+  goals_against <- vec_cast(goals_against, to = integer())
 
   new_result(goals_for, goals_against)
 }

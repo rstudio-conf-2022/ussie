@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Ian Lyttle \email{ijlyttle@me.com} (\href{https://orcid.org/0000-0001-9962-4849}{ORCID})
 
+Authors:
+\itemize{
+  \item Emma Rand \email{emma.rand@york.ac.uk} (\href{https://orcid.org/0000-0002-1358-8275}{ORCID})
+}
+
 }
 \keyword{internal}
