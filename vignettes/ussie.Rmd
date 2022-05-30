@@ -1,0 +1,34 @@
+---
+title: "ussie"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ussie}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ussie)
+library(dplyr)
+
+conflicted::conflict_prefer("filter", "dplyr")
+```
+
+You can use the ussie package to work with data for league-play matches for European Football Leagues.
+The data is provided by James Curley's [**engsoccerdata**](https://CRAN.R-project.org/package=engsoccerdata) package: the CRAN version has results through summer 2016; the [GitHub version](https://github.com/jalapic/engsoccerdata) has more-recent results. 
+
+## Make match results
+
+You can make a `matches` tibble using data from {engsoccerdata}, then providing a `country`:
+
+```{r}
+uss_make_matches(engsoccerdata::england, country = "England") |> 
+  glimpse()
+```

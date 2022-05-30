@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/ijlyttle/ussie/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ijlyttle/ussie/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of ussie is to demonstrate how build a package and functions
+The goal of ussie is to demonstrate how to build a package and functions
 for the “Building Tidy Tools” course at rstudio::conf(2022L).
 
 ## Installation

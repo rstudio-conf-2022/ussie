@@ -8,7 +8,7 @@ Authors@R:
     person("Emma", "Rand", , "emma.rand@york.ac.uk", role = c("aut"),
            comment = c(ORCID = "0000-0002-1358-8275"))
   )
-Description:  This is a demo package for the "Building Tidy Tools" course
+Description: This is a demo package for the "Building Tidy Tools" course
  at rstudio::conf(2022L).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -16,3 +16,15 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 URL: https://github.com/ijlyttle/ussie
 BugReports: https://github.com/ijlyttle/ussie/issues
+Imports: 
+    dplyr,
+    engsoccerdata,
+    tibble
+Suggests:
+    conflicted,
+    knitr,
+    rmarkdown,
+    roxygen2,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
