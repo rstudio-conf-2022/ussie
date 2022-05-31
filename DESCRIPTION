@@ -19,6 +19,7 @@ BugReports: https://github.com/ijlyttle/ussie/issues
 Imports: 
     dplyr,
     engsoccerdata,
+    rlang,
     tibble
 Suggests:
     conflicted,
