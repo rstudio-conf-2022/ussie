@@ -18,9 +18,9 @@ URL: https://github.com/ijlyttle/ussie
 BugReports: https://github.com/ijlyttle/ussie/issues
 Imports: 
     dplyr,
-    engsoccerdata,
     tibble
 Suggests:
+    engsoccerdata,
     conflicted,
     knitr,
     rmarkdown,
