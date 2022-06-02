@@ -83,7 +83,7 @@ get_soccer_data <- function(data_name) {
 #'
 uss_get_matches <- function(country = uss_countries()) {
   
-  # side-effects exercise (wait for it)
+  # 2.2 side-effects exercise 
   #
   # 1. use rlang::arg_match() to validate country
   
@@ -92,7 +92,7 @@ uss_get_matches <- function(country = uss_countries()) {
   # capitalize
   substr(country, 1, 1) <- toupper(substr(country, 1, 1))
   
-  # tidy-eval exercise (wait for it)
+  # 2.3 tidy-eval exercise 
   #
   # 1. put `...` into the formals
   # 2. pipe the results to `dplyr::filter(...)`
