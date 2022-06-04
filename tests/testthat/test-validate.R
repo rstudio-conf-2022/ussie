@@ -1,13 +1,7 @@
 test_that("validate_data_frame works", {
 
-  # throw warning on partial matches
-  withr::local_options(
-    list(
-      warnPartialMatchDollar = TRUE,
-      warnPartialMatchArgs = TRUE,
-      warnPartialMatchAttr = TRUE
-    )
-  )
+  # use helper function to warn on partial matches
+  local_warn_partial_match()
 
   # test the `class` of the error, return error-condition object
   #   - https://testthat.r-lib.org/reference/expect_error.html
@@ -25,6 +19,7 @@ test_that("validate_data_frame works", {
   #  - https://testthat.r-lib.org/reference/expect_invisible.html
   out <- expect_invisible(validate_data_frame(mtcars))
   expect_identical(out, mtcars)
+
 })
 
 test_that("validate_cols works", {
