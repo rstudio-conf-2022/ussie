@@ -16,7 +16,7 @@
 #'
 #' @noRd
 #'
-validate_data_frame <- function(.data) {
+validate_data_frame <- function(.data, call = rlang::caller_env()) {
 
   # https://cli.r-lib.org/reference/cli_abort.html
   # https://rlang.r-lib.org/reference/abort.html
@@ -48,11 +48,12 @@ validate_data_frame <- function(.data) {
         "Must supply a data frame",
         x = "You have supplied a {.cls {class(.data)}}."
       ),
-      # information for developer
+      # class information for developers
       class = "ussie_error_data",
+      # other information for developers
       class_data = class(.data),
-      # tell user about calling-function, not this one
-      call = rlang::caller_env()
+      # tell user where we are calling from
+      call = call
     )
   }
 
@@ -69,7 +70,6 @@ validate_data_frame <- function(.data) {
 #' @inherit validate_data_frame params return
 #' @param cols_req `character`, name(s) of required columns for `.data`
 #'
-#' @return Invisible `.data`, called for side-effects.
 #' @examples
 #' # success :)
 #' validate_cols(mtcars, cols_req = c("wt", "mpg"))
@@ -80,7 +80,7 @@ validate_data_frame <- function(.data) {
 #' }
 #' @noRd
 #'
-validate_cols <- function(.data, cols_req) {
+validate_cols <- function(.data, cols_req, call = rlang::caller_env()) {
 
   cols_data <- names(.data)
   cols_missing <- cols_req[!(cols_req %in% cols_data)]
@@ -99,12 +99,13 @@ validate_cols <- function(.data, cols_req) {
         i = "Has {qlen(cols_data)} column{?s}: {.var {cols_data}}",
         x = "Missing {qlen(cols_missing)} column{?s}: {.var {cols_missing}}"
       ),
-      # information for developer
+      # class information for developers
+      class = "ussie_error_cols",
+      # other information for developers
       cols_req = cols_req,
       cols_data = cols_data,
-      class = "ussie_error_cols",
-      # tell user about calling-function, not this one
-      call = rlang::caller_env()
+      # tell user where we are calling from
+      call = call
     )
   }
 
