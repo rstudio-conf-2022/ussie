@@ -1,7 +1,7 @@
 test_that("validate_data_frame works", {
   
   # ## 2.2.2 side effects (global state)
-  # ## use helper function to warn on partial matches
+  # ## add helper function to warn on partial matches
   # ## - https://testthat.r-lib.org/articles/test-fixtures.html
   
   # ## 2.2.1 side effects (errors)
@@ -27,7 +27,7 @@ test_that("validate_data_frame works", {
 test_that("validate_cols works", {
   
   # ## 2.2.2 side effects (global state)
-  # ## use helper function to warn on partial matches
+  # ## add helper function to warn on partial matches
  
   # ## 2.2.1 side effects (errors)
   # ## test the `class` of the error, return error-condition object 
