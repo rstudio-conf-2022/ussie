@@ -43,8 +43,7 @@ test_that("validate_cols works", {
   # ## test the error-message using a snapshot
   # expect_snapshot_error(validate_cols(mtcars, "foo"))
   
-  # ## test the return object
-  # out <- expect_invisible(validate_cols(mtcars, "mpg"))
-  # expect_identical(out, mtcars)
+  # ## add test for the return object
+
 })
 
