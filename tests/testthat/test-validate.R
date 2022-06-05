@@ -1,6 +1,8 @@
 test_that("validate_data_frame works", {
 
   # use helper function to warn on partial matches
+  # - https://testthat.r-lib.org/articles/test-fixtures.html
+  #
   local_warn_partial_match()
 
   # test the `class` of the error, return error-condition object

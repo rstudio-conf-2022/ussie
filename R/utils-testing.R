@@ -1,11 +1,11 @@
 local_warn_partial_match <- function(.local_envir = parent.frame()) {
 
-  # This is a trick to get around an anomaly in the option named
-  # "warnPartialMatchDollar"
+  # This is a trick to get around an anomaly in these options.
   #
-  # In R 4.2.0, if you set the option to `TRUE`, then to `NULL`, it acts
-  # as if it is still `TRUE`. In my mind, `NULL` is equivalent to `FALSE`,
-  # so I set them explicity to `FALSE` if they are NULL.
+  # In R 4.2.0, if you set one of these options to `TRUE`, then to `NULL`, it
+  # acts as if it is still `TRUE`.
+  #
+  # My workaround: set them to `FALSE` if `NULL`.
   #
   # see https://github.com/HenrikBengtsson/Wishlist-for-R/issues/134
 
