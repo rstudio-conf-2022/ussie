@@ -1,5 +1,7 @@
 test_that("uss_get_matches works", {
   
+  local_warn_partial_match()
+  
   # ## 2.2.1 side effects (errors)
   # ## validate the country argument
   # expect_error(uss_get_matches("tatooine"), class = "rlang_error")

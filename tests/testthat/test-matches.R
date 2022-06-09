@@ -1,5 +1,7 @@
 test_that("uss_make_matches works", {
   
+  local_warn_partial_match()
+  
   italy <- uss_make_matches(engsoccerdata::italy, "Italy")
   
   expect_true(tibble::is_tibble(italy))
