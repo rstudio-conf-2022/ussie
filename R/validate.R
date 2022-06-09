@@ -94,8 +94,16 @@ validate_cols <- function(.data, cols_req, call = rlang::caller_env()) {
     
     cli::cli_abort(
       # information for user
+      c(
+        "Data frame needs {qlen(cols_req)} column{?s}: {.var {cols_req}}",
+        i = "Has {qlen(cols_data)} column{?s}: {.var {cols_data}}",
+        x = "Missing {qlen(cols_missing)} column{?s}: {.var {cols_missing}}"
+      ),
       # class information for developers
+      class = "ussie_error_cols",
       # other information for developers
+      cols_req = cols_req,
+      cols_data = cols_data
       # tell user where we are calling from
     )
   }
