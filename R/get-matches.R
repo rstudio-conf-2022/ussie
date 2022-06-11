@@ -97,8 +97,9 @@ uss_get_matches <- function(country = uss_countries()) {
   #
   # 1. put `...` into the formals
   # 2. pipe the results to `dplyr::filter(...)`
-  # 3. @inheritDotParams dplyr::filter
-  # 4. a few words in the description
+  # 3. @inheritParams dplyr::filter
+  # 4. add a few words to the description
+  # 5. add example
   #
   # in other cases, consider using dot-prefix for the other args
   # (but we aren't doing that here)
