@@ -30,12 +30,7 @@ uss_make_teams_matches <- function(data_matches) {
   #
   teams_matches_home <-
     data_matches |>
-    dplyr::rename(
-      team = "home",
-      opponent = "visitor",
-      goals_for = "goals_home",
-      goals_against = "goals_visitor"
-    ) |>
+    dplyr::rename(!!!rename_home()) |>
     dplyr::mutate(at_home = TRUE)
   
   # We can use `at_home` as a bare name because `dplyr::mutate()` takes
@@ -58,12 +53,7 @@ uss_make_teams_matches <- function(data_matches) {
   
   teams_matches_visitor <-
     data_matches |>
-    dplyr::rename(
-      team = "visitor",
-      opponent = "home",
-      goals_against = "goals_home",
-      goals_for = "goals_visitor"
-    ) |>
+    dplyr::rename(!!!rename_visitor()) |>
     dplyr::mutate(at_home = .env$at_home)
   
   # 2.3.5 tidy eval (across())
