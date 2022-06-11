@@ -64,7 +64,7 @@ uss_make_teams_matches <- function(data_matches) {
       goals_against = "goals_home",
       goals_for = "goals_visitor"
     ) |>
-    dplyr::mutate(at_home = FALSE)
+    dplyr::mutate(at_home = .env$at_home)
   
   # 2.3.5 tidy eval (across())
   # Arrange `result` by `c("country", "tier", "season", "team", "date")`
