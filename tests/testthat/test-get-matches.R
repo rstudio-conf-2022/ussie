@@ -2,7 +2,7 @@ test_that("uss_get_matches works", {
   
   # ## 2.2.1 side effects (errors)
   # ## validate the country argument
-  # expect_error(uss_get_matches("tatooine"), class = "rlang_error")
+  expect_error(uss_get_matches("tatooine"), class = "rlang_error")
   
   # ## 2.1.2 design (create new function)
   italy <- uss_get_matches("italy")
