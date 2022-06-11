@@ -7,11 +7,11 @@
       Columns: 9
       $ country       <chr> "Italy", "Italy", "Italy", "Italy", "Italy", "Italy", "I~
       $ tier          <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
-      $ season        <int> 1934, 1934, 1934, 1934, 1934, 1934, 1934, 1934, 1934, 19~
-      $ team          <chr> "Lazio Roma", "Torino FC", "Sampierdarenese", "SSC Napol~
-      $ date          <date> 1934-09-30, 1934-09-30, 1934-09-30, 1934-09-30, 1934-09~
-      $ at_home       <lgl> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR~
-      $ opponent      <chr> "US Livorno", "Unione Triestina", "Bologna FC", "US Ales~
-      $ goals_for     <int> 6, 3, 2, 0, 4, 0, 3, 1, 1, 1, 2, 4, 2, 2, 3, 2, 2, 2, 0,~
-      $ goals_against <int> 1, 1, 1, 1, 1, 2, 0, 2, 1, 1, 1, 0, 2, 1, 1, 0, 1, 1, 1,~
+      $ season        <int> 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 1929, 19~
+      $ team          <chr> "AC Milan", "AC Milan", "AC Milan", "AC Milan", "AC Mila~
+      $ date          <date> 1929-10-06, 1929-10-13, 1929-10-20, 1929-10-27, 1929-11~
+      $ at_home       <lgl> TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE~
+      $ opponent      <chr> "Brescia Calcio", "Modena FC", "SSC Napoli", "AS Roma", ~
+      $ goals_for     <int> 4, 1, 1, 3, 1, 1, 1, 2, 1, 5, 0, 1, 3, 1, 2, 1, 2, 1, 1,~
+      $ goals_against <int> 1, 0, 2, 1, 1, 2, 4, 1, 3, 2, 1, 1, 2, 0, 1, 2, 2, 4, 1,~
 

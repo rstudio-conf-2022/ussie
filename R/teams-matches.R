@@ -68,7 +68,14 @@ uss_make_teams_matches <- function(data_matches) {
   result <-
     teams_matches_home |>
     dplyr::bind_rows(teams_matches_visitor) |>
-    dplyr::select(dplyr::all_of(cols_teams_matches())) 
+    dplyr::select(dplyr::all_of(cols_teams_matches())) |>
+    dplyr::arrange(
+      dplyr::across(
+        dplyr::all_of(
+          c("country", "tier", "season", "team", "date")
+        )
+      )
+    ) 
 
   # I'm finding that `dplyr::all_of()` does not seem to be strictly necessary.
   # It's bulky, but I think it remains a good practice because it asserts that
