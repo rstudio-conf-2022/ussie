@@ -25,11 +25,13 @@ a tibble in a standardised format.
 }
 \details{
 \code{uss_countries()} returns the available choices; \code{"england"} is
-the default.
+the default. You can add filtering expressions via the \code{...} argument;
+These are evaluated using \code{\link[dplyr:filter]{dplyr::filter()}}.
 
 This function relies on an internal function, \code{uss_make_matches()}, to parse
 the source data.
 }
 \examples{
 uss_get_matches("england")
+uss_get_matches("italy", season == 1990)
 }

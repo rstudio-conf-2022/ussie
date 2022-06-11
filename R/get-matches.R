@@ -70,7 +70,8 @@ get_soccer_data <- function(data_name) {
 #' a tibble in a standardised format.
 #'
 #' `uss_countries()` returns the available choices; `"england"` is
-#' the default.
+#' the default. You can add filtering expressions via the `...` argument;
+#' These are evaluated using [dplyr::filter()].
 #'
 #' This function relies on an internal function, `uss_make_matches()`, to parse
 #' the source data.
@@ -80,6 +81,7 @@ get_soccer_data <- function(data_name) {
 #'
 #' @examples
 #' uss_get_matches("england")
+#' uss_get_matches("italy", season == 1990)
 #' @export
 #'
 uss_get_matches <- function(country = uss_countries(), ...) {
