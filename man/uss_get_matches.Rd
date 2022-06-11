@@ -4,11 +4,16 @@
 \alias{uss_get_matches}
 \title{Get a league-play tibble}
 \usage{
-uss_get_matches(country = uss_countries())
+uss_get_matches(country = uss_countries(), ...)
 }
 \arguments{
 \item{country}{\code{character} scalar, specifies the league.
 \code{uss_countries()} returns choices available from {engsoccerdata}}
+
+\item{...}{<\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Expressions that return a
+logical value, and are defined in terms of the variables in \code{.data}.
+If multiple expressions are included, they are combined with the \code{&} operator.
+Only rows for which all conditions evaluate to \code{TRUE} are kept.}
 }
 \value{
 \link[tibble:tibble-package]{tibble} with columns \code{country}, \code{date},
