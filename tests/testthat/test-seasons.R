@@ -12,14 +12,14 @@ test_that("seasons_intermediate() works", {
   # not comprehensive, but may give us a indication if something changes
   expect_snapshot(dplyr::glimpse(italy))
   
-  # ## 2.4.1 Misc. (as_function())
-  # ## make sure we can pass a purr-style anonymous function for points
-  #
-  # italy_5_wins <-
-  #   seasons_intermediate(teams_matches_italy, ~5L) |>
-  #   dplyr::filter(wins == TRUE)
-  # 
-  # expect_identical(unique(italy_5_wins$points), 5L)
+  ## 2.4.1 Misc. (as_function())
+  ## make sure we can pass a purr-style anonymous function for points
+
+  italy_5_wins <-
+    seasons_intermediate(teams_matches_italy, ~5L) |>
+    dplyr::filter(wins == TRUE)
+
+  expect_identical(unique(italy_5_wins$points), 5L)
 
 })
 

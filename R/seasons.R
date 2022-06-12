@@ -16,7 +16,8 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
   # 2.4.1 Misc. (as_function())
   #
   # 1. accept purrr-style anonymus functions
-  
+  fn_points_per_win <- rlang::as_function(fn_points_per_win)
+    
   result <-
     data_teams_matches |>
     # across() lets you use tidy-select semantics inside data-masking functions
@@ -55,7 +56,8 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
 #' @param fn_points_per_win `function` with vectorized arguments `country`,
 #'   `season`, that returns a integer indicating points-per-win.
 #'   A default function is provided, [uss_points_per_win()], which includes
-#'   the countries in [uss_countries()]. 
+#'   the countries in [uss_countries()]. You can provide a purrr-style
+#'   anonymous function.
 #'
 #' @return [tibble][tibble::tibble-package] with columns
 #'   `country`, `tier`, `season`, `team`, `date`, `matches`, `wins`,
