@@ -15,12 +15,12 @@ test_that("uss_plot_seasons_tiers() works", {
   # default
   expect_snapshot_ggplot("wins", uss_plot_seasons_tiers(leeds_norwich))
   
-  # ## 2.3.7 tidy eval (curly-curly)
-  # ## different y-axis
-  # expect_snapshot_ggplot(
-  #   "wins-losses",
-  #   uss_plot_seasons_tiers(leeds_norwich, wins - losses)
-  # )
+  ## 2.3.7 tidy eval (curly-curly)
+  ## different y-axis
+  expect_snapshot_ggplot(
+    "wins-losses",
+    uss_plot_seasons_tiers(leeds_norwich, wins - losses)
+  )
   
   # number of columns
   expect_snapshot_ggplot(

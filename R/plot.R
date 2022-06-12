@@ -6,12 +6,13 @@
 #'  - faceted by `team`
 #'  - has two layers:
 #'    - rectangles shaded by tier
-#'    - points showing `wins` on the y-axis
+#'    - points showing some measure (default `wins`) on the y-axis
 #'
 #' Of the countries included in [uss_countries()], only `"england"` has data for
 #' more than one `tier`.
 #'
 #' @param data_seasons, data frame created using [uss_make_seasons_final()].
+#' @param aes_y, `<data-masking>` expression used for the y-aesthetic.
 #' @param ncol, `integer`-ish number of columns in facet.
 #'
 #' @return Object with S3 classes `"gg"`, `"ggplot"`, i.e. a ggplot2 object.
@@ -26,9 +27,12 @@
 #' # use default (wins)
 #' uss_plot_seasons_tiers(leeds_norwich)
 #'
+#' # use custom expression
+#' uss_plot_seasons_tiers(leeds_norwich, goals_for - goals_against)
+#' 
 #' @export
 #'
-uss_plot_seasons_tiers <- function(data_seasons, ncol = 1) {
+uss_plot_seasons_tiers <- function(data_seasons, aes_y = .data$wins, ncol = 1) {
   
   validate_data_frame(data_seasons)
   validate_cols(data_seasons, cols_seasons())
@@ -47,7 +51,7 @@ uss_plot_seasons_tiers <- function(data_seasons, ncol = 1) {
     ggplot2::geom_point(
       ggplot2::aes(
         x = .data$season,
-        y = .data$wins,
+        y = {{ aes_y }},
       ),
       color = "#333333"
     ) +
