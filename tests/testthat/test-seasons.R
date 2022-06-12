@@ -40,18 +40,38 @@ test_that("uss_make_seasons_final() works", {
   expect_error(uss_make_seasons_final(3), class = "ussie_error_data")
   expect_error(uss_make_seasons_final(mtcars), class = "ussie_error_cols")
   
-  # ## calculate final results using cumulative results, expect same result 
-  # italy_cumulative_final <- 
-  #   uss_make_seasons_cumulative(teams_matches_italy) |>
-  #   dplyr::group_by(
-  #     dplyr::across(
-  #       dplyr::all_of(cols_seasons_grouping())
-  #     )
-  #   ) |>
-  #   dplyr::filter(.data$date = max(.data$date))
-  # 
-  # italy_final <- uss_make_seasons_final(teams_matches_italy)
-  # 
-  # expect_identical(italy_final, italy_cumulative_final)
+  ## calculate final results using cumulative results, expect same result
+  
+  ## helper to arrange by final points, etc.
+  arrange_final <- function(data) {
+    
+    result <- 
+      data |> 
+      dplyr::group_by(.data$country, .data$tier, .data$season) |>
+      dplyr::arrange(
+        dplyr::desc(.data$points), 
+        dplyr::desc(.data$goals_for - .data$goals_against), 
+        team,
+        .by_group = TRUE
+      )
+    
+    result  
+  }
+  
+  italy_cumulative_final <-
+    uss_make_seasons_cumulative(teams_matches_italy) |>
+    dplyr::group_by(
+      dplyr::across(
+        dplyr::all_of(cols_seasons_grouping())
+      )
+    ) |>
+    dplyr::filter(.data$matches == max(.data$matches)) |>
+    arrange_final()
+
+  italy_final <- 
+    uss_make_seasons_final(teams_matches_italy)  |>
+    arrange_final()
+
+  expect_identical(italy_final, italy_cumulative_final)
 
 })

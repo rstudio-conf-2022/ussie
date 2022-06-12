@@ -49,6 +49,7 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
 #' return return a data frame on wins, losses, points, etc.:
 #'
 #' - cumulative, over the course of each season: `uss_make_seasons_cumulative()`
+#' - final result for each season: `uss_make_seasons_final()`
 #'
 #' @param data_teams_matches data frame created using [uss_make_teams_matches()]
 #' @param fn_points_per_win `function` with vectorized arguments `country`,
@@ -108,4 +109,16 @@ uss_make_seasons_final <- function(data_teams_matches,
   validate_data_frame(data_teams_matches)
   validate_cols(data_teams_matches, cols_teams_matches())
   
+  result <-
+    data_teams_matches |>
+    seasons_intermediate(fn_points_per_win) |>
+    dplyr::summarise(
+      date = max(.data$date),
+      dplyr::across(
+        dplyr::all_of(cols_seasons_accumulate()),
+        sum
+      )
+    )
+  
+  result  
 }
