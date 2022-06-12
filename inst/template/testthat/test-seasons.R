@@ -61,8 +61,7 @@ test_that("uss_make_seasons_final() works", {
   #       dplyr::desc(.data$goals_for - .data$goals_against), 
   #       team,
   #       .by_group = TRUE
-  #     ) |> 
-  #     arrange_final()
+  #     ) 
   #   
   #   result  
   # }
@@ -74,7 +73,7 @@ test_that("uss_make_seasons_final() works", {
   #       dplyr::all_of(cols_seasons_grouping())
   #     )
   #   ) |>
-  #   dplyr::filter(.data$matches = max(.data$matches)) |>
+  #   dplyr::filter(.data$matches == max(.data$matches)) |>
   #   arrange_final()
   #
   # italy_final <- 
