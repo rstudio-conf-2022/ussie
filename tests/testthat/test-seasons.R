@@ -36,9 +36,9 @@ test_that("uss_make_seasons_cumulative() works", {
 
 test_that("uss_make_seasons_final() works", {
   
-  # ## validate
-  # expect_error(uss_make_seasons_final(3), class = "ussie_error_data")
-  # expect_error(uss_make_seasons_final(mtcars), class = "ussie_error_cols")
+  ## validate
+  expect_error(uss_make_seasons_final(3), class = "ussie_error_data")
+  expect_error(uss_make_seasons_final(mtcars), class = "ussie_error_cols")
   
   # ## calculate final results using cumulative results, expect same result 
   # italy_cumulative_final <- 

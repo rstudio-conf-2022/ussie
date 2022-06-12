@@ -63,6 +63,7 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
 #' @examples
 #' italy <- uss_get_matches("italy") |> uss_make_teams_matches()
 #' uss_make_seasons_cumulative(italy)
+#' uss_make_seasons_final(italy)
 #' @export
 #'
 uss_make_seasons_cumulative <- function(data_teams_matches,
@@ -99,4 +100,13 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
 #    `cols_seasons_accumulate()`.
 # 8. Test the function by uncommenting the tests.
 
-
+#' @rdname uss_make_seasons_cumulative
+#' @export
+#'
+uss_make_seasons_final <- function(data_teams_matches,
+                                   fn_points_per_win = uss_points_per_win) {
+  
+  validate_data_frame(data_teams_matches)
+  validate_cols(data_teams_matches, cols_teams_matches())
+  
+}
