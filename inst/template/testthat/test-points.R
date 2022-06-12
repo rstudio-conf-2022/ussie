@@ -1,4 +1,7 @@
 test_that("uss_points_per_game() works", {
+  
+  local_warn_partial_match()
+  
   expect_identical(
     uss_points_per_win(country = "england", season = 1980),
     2L
@@ -28,4 +31,5 @@ test_that("uss_points_per_game() works", {
     uss_points_per_win("tatooine", season = c(1977, 1977)),
     class = "ussie_error_points_lengths"
   )
+  
 })
