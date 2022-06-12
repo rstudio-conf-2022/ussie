@@ -61,7 +61,7 @@ test_that("uss_make_seasons_final() works", {
         dplyr::desc(.data$goals_for - .data$goals_against),
         team,
         .by_group = TRUE
-      ) 
+      )
 
     result
   }
