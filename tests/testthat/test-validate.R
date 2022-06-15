@@ -14,7 +14,7 @@ test_that("validate_data_frame works", {
 
   # test the error-message using a snapshot:
   #  - https://testthat.r-lib.org/reference/expect_snapshot.html
-  #  - example output: https://github.com/ijlyttle/ussie/blob/main/tests/testthat/_snaps/validate.md
+  #  - example output: https://github.com/rstudio-conf-2022/ussie/blob/main/tests/testthat/_snaps/validate.md
   expect_snapshot_error(validate_data_frame(3))
 
   # test the return object:

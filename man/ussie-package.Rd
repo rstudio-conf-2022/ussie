@@ -11,8 +11,8 @@ This is a first pass at a demo package for the "Building Tidy Tools" course at r
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ijlyttle/ussie}
-  \item Report bugs at \url{https://github.com/ijlyttle/ussie/issues}
+  \item \url{https://github.com/rstudio-conf-2022/ussie}
+  \item Report bugs at \url{https://github.com/rstudio-conf-2022/ussie/issues}
 }
 
 }
