@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ijlyttle/ussie/workflows/R-CMD-check/badge.svg)](https://github.com/ijlyttle/ussie/actions)
+[![R-CMD-check](https://github.com/rstudio-conf-2022/ussie/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-conf-2022/ussie/actions)
 <!-- badges: end -->
 
 The goal of ussie is to make a first attempt at a demo package for folks
@@ -18,7 +18,7 @@ You can install the development version of ussie from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ijlyttle/ussie")
+devtools::install_github("rstudio-conf-2022/ussie")
 ```
 
 ## Notes
