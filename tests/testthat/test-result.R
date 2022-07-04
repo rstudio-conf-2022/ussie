@@ -22,6 +22,8 @@ test_that("low-level constructor works", {
 
 
 test_that("high-level constructor works", {
+ 
+  local_warn_partial_match()
   
   result_low <- new_result(goals_for, goals_against)
   
@@ -37,6 +39,8 @@ test_that("high-level constructor works", {
 })
 
 test_that("formatting works", {
+  
+  local_warn_partial_match()
   
   result <- uss_result(goals_for, goals_against)
   

@@ -64,7 +64,7 @@ format.ussie_result <- function(x, ...) {
   goals_for <- field(x, "goals_for")
   goals_against <- field(x, "goals_against")
   
-  result <- dplyr::case_when(
+  outcome <- dplyr::case_when(
     goals_for >  goals_against ~ "W",
     goals_for == goals_against ~ "D",
     goals_for <  goals_against ~ "L",
@@ -72,7 +72,7 @@ format.ussie_result <- function(x, ...) {
   )
   
   # compose output
-  out <- glue::glue("{result} {goals_for}-{goals_against}")
+  out <- glue::glue("{outcome} {goals_for}-{goals_against}")
   
   # what if something is missing?
   out[is.na(goals_for) | is.na(goals_against)] <- NA_character_
@@ -83,5 +83,9 @@ format.ussie_result <- function(x, ...) {
 
 # these generics are defined in the vctrs package
 # - they control how the class-name is abbreviated when a tibble is printed.
+
+#' @export
 vec_ptype_abbr.ussie_result <- function(x, ...) "rslt"
+
+#' @export
 vec_ptype_full.ussie_result <- function(x, ...) "result"
