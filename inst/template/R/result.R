@@ -64,7 +64,7 @@ format.ussie_result <- function(x, ...) {
   goals_for <- field(x, "goals_for")
   goals_against <- field(x, "goals_against")
   
-  result <- dplyr::case_when(
+  outcome <- dplyr::case_when(
     goals_for >  goals_against ~ "W",
     goals_for == goals_against ~ "D",
     goals_for <  goals_against ~ "L",
@@ -72,7 +72,7 @@ format.ussie_result <- function(x, ...) {
   )
   
   # compose output
-  out <- glue::glue("{result} {goals_for}-{goals_against}")
+  out <- glue::glue("{outcome} {goals_for}-{goals_against}")
   
   # what if something is missing?
   out[is.na(goals_for) | is.na(goals_against)] <- NA_character_
