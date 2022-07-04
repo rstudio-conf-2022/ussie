@@ -83,5 +83,9 @@ format.ussie_result <- function(x, ...) {
 
 # these generics are defined in the vctrs package
 # - they control how the class-name is abbreviated when a tibble is printed.
+
+#' @export
 vec_ptype_abbr.ussie_result <- function(x, ...) "rslt"
+
+#' @export
 vec_ptype_full.ussie_result <- function(x, ...) "result"
