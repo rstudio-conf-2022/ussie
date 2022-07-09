@@ -47,6 +47,7 @@ test_that("uss_make_seasons_final() works", {
   expect_error(uss_make_seasons_final(3), class = "ussie_error_data")
   expect_error(uss_make_seasons_final(mtcars), class = "ussie_error_cols")
   
+<<<<<<< HEAD:tests/testthat/test-seasons.R
   ## 2.3.7 tidy eval (exercise)
   ## calculate final results using cumulative results, expect same result
 
@@ -81,5 +82,39 @@ test_that("uss_make_seasons_final() works", {
     arrange_final()
 
   expect_identical(italy_final, italy_cumulative_final)
+=======
+  # ## 2.3.7 tidy eval (exercise)
+  # ## calculate final results using cumulative results, expect same result 
+  #
+  # ## helper to arrange by final points, etc.
+  # arrange_final <- function(data) {
+  #   
+  #   result <- 
+  #     data |> 
+  #     dplyr::group_by(.data$country, .data$tier, .data$season) |>
+  #     dplyr::arrange(
+  #       dplyr::desc(.data$points), 
+  #       dplyr::desc(.data$goals_for - .data$goals_against), 
+  #       team,
+  #       .by_group = TRUE
+  #     ) 
+  #   
+  #   result  
+  # }
+  #
+  # italy_cumulative_final <- 
+  #   uss_make_seasons_cumulative(teams_matches_italy) |>
+  #   dplyr::group_by(
+  #     dplyr::across(cols_seasons_grouping())
+  #   ) |>
+  #   dplyr::filter(.data$matches == max(.data$matches)) |>
+  #   arrange_final()
+  #
+  # italy_final <- 
+  #   uss_make_seasons_final(teams_matches_italy) |>
+  #   arrange_final()
+  # 
+  # expect_identical(italy_final, italy_cumulative_final)
+>>>>>>> 2.3.6:inst/template/tests/testthat/test-seasons.R
 
 })
