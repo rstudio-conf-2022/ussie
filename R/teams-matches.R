@@ -72,17 +72,23 @@ uss_make_teams_matches <- function(data_matches) {
   #  - a character vector ("country", etc.) is a tidy-selection specification,
   #    it specifies columns
   #  - to use tidy-select spec in a data-masking function, use `dplyr::across()`
-  #    - to specify that all the specified columns must be present (or error),
-  #      use `dplyr::all_of()`
   #
   result <-
     teams_matches_home |>
     dplyr::bind_rows(teams_matches_visitor) |>
-    dplyr::select(dplyr::all_of(cols_teams_matches())) 
+    dplyr::select(cols_teams_matches())
 
-  # I'm finding that `dplyr::all_of()` does not seem to be strictly necessary.
-  # It's bulky, but I think it remains a good practice because it asserts that
-  # these columns shall be in the data frame; something is wrong if not.
+  # We are not using `dplyr::all_of()` here because `cols_teams_matches()`
+  # is a function call - it cannot be confused with a data-frame column name.
+  #
+  # We *would* have to use `dplyr::all_of()` if we did something line this:
+  #
+  # select_cols <- cols_teams_matches()
+  # result <-
+  #   teams_matches_home |>
+  #   dplyr::bind_rows(teams_matches_visitor) |>
+  #   dplyr::select(dplyr::all_of(select_cols))
+  #
   
   result
 }
