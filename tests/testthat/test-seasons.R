@@ -69,9 +69,7 @@ test_that("uss_make_seasons_final() works", {
   italy_cumulative_final <-
     uss_make_seasons_cumulative(teams_matches_italy) |>
     dplyr::group_by(
-      dplyr::across(
-        dplyr::all_of(cols_seasons_grouping())
-      )
+      dplyr::across(cols_seasons_grouping())
     ) |>
     dplyr::filter(.data$matches == max(.data$matches)) |>
     arrange_final()
@@ -81,5 +79,6 @@ test_that("uss_make_seasons_final() works", {
     arrange_final()
 
   expect_identical(italy_final, italy_cumulative_final)
+
 
 })

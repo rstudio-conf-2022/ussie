@@ -22,9 +22,7 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
     # across() lets you use tidy-select semantics inside data-masking functions
     # - https://dplyr.tidyverse.org/articles/colwise.html
     dplyr::group_by(
-      dplyr::across(
-        dplyr::all_of(cols_seasons_grouping())
-      )
+      dplyr::across(cols_seasons_grouping())
     ) |>
     dplyr::transmute(
       date = .data$date,
@@ -76,10 +74,7 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
     data_teams_matches |>
     seasons_intermediate(fn_points_per_win) |>
     dplyr::mutate(
-      dplyr::across(
-        dplyr::all_of(cols_seasons_accumulate()),
-        cumsum
-      )
+      dplyr::across(cols_seasons_accumulate(), cumsum)
     )
   
   result
@@ -114,10 +109,7 @@ uss_make_seasons_final <- function(data_teams_matches,
     seasons_intermediate(fn_points_per_win) |>
     dplyr::summarise(
       date = max(.data$date),
-      dplyr::across(
-        dplyr::all_of(cols_seasons_accumulate()),
-        sum
-      )
+      dplyr::across(cols_seasons_accumulate(), sum)
     )
   
   result  
