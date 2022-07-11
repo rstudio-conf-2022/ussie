@@ -88,8 +88,9 @@ uss_get_matches <- function(country = uss_countries(), ...) {
   
   # 2.2.1 side effects (errors) 
   #
-  # 1. use rlang::arg_match() to validate country
+  # 1. instead, use rlang::arg_match() to validate country
   country <- rlang::arg_match(country)
+
   
   data <- get_soccer_data(country)
   
