@@ -2,4 +2,5 @@
 
 export(uss_make_matches)
 importFrom(rlang,.data)
+importFrom(rlang,.env)
 importFrom(tibble,tibble)
