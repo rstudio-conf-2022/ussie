@@ -24,6 +24,7 @@ seasons_intermediate <- function(data_teams_matches, fn_points_per_win) {
     dplyr::group_by(
       dplyr::across(cols_seasons_grouping())
     ) |>
+    dplyr::arrange(.data$date, .by_group = TRUE) |>
     dplyr::transmute(
       date = .data$date,
       matches = TRUE,
@@ -75,7 +76,7 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
     seasons_intermediate(fn_points_per_win) |>
     dplyr::mutate(
       dplyr::across(cols_seasons_accumulate(), cumsum)
-    )
+    ) 
   
   result
 }
@@ -93,7 +94,9 @@ uss_make_seasons_cumulative <- function(data_teams_matches,
 # 6  You will want to `sum` quantities, rather than `cumsum`.
 # 7. You will have to summarise the `date` differently than 
 #    `cols_seasons_accumulate()`.
-# 8. Test the function by uncommenting the tests.
+# 8. Use the `arrange_final()` function to arrange the results into "normal"
+#    standings.
+# 9. Test the function by uncommenting the tests.
 
 #' @rdname uss_make_seasons_cumulative
 #' @export
@@ -110,7 +113,27 @@ uss_make_seasons_final <- function(data_teams_matches,
     dplyr::summarise(
       date = max(.data$date),
       dplyr::across(cols_seasons_accumulate(), sum)
-    )
+    ) |>
+    arrange_final()
   
   result  
 }
+
+# internal function to arrange season-final standings
+arrange_final <- function(data) {
+  
+    result <-
+      data |>
+      dplyr::group_by(
+        dplyr::across(c("country", "season", "tier"))
+      ) |>
+      dplyr::arrange(
+        dplyr::desc(.data$points),
+        dplyr::desc(.data$goals_for - .data$goals_against),
+        .data$team,
+        .by_group = TRUE
+      )
+
+    result
+}
+
