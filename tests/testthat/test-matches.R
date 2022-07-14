@@ -12,6 +12,8 @@ test_that("uss_make_matches works", {
   expect_true(tibble::is_tibble(italy))
   expect_named(italy, cols_matches())
   expect_identical(unique(italy$country), "Italy")
+
+  expect_s3_class(italy$tier, "factor")
   
   # not as robust as a full "identical" comparison
   #  - still useful for column names, types, values for first few rows
