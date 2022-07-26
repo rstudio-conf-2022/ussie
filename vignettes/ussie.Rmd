@@ -32,3 +32,21 @@ You can make a `matches` tibble using data from {engsoccerdata}, then providing 
 uss_make_matches(engsoccerdata::england, country = "England") |> 
   glimpse()
 ```
+
+## Get country data
+
+The function `uss_get_matches()` can get the data for a country:
+
+```{r uss_get_matches}
+italy_matches <- 
+  uss_get_matches("italy") |>
+  glimpse()
+```
+
+
+
+
+
+
+
+
