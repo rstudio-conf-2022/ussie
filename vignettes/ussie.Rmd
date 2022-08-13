@@ -50,6 +50,16 @@ uss_get_matches("england", season == 1966) |>
   glimpse()
 ```
 
+We can accumulate seasons:
+
+```{r}
+italy <- uss_get_matches("italy") |> uss_make_teams_matches()
+
+uss_make_seasons_cumulative(italy) |> glimpse()
+
+uss_make_seasons_final(italy) |> glimpse()
+```
+
 
 
 
